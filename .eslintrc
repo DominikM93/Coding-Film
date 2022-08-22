@@ -1,0 +1,46 @@
+{
+    "plugins": [
+        "react",
+        "react-hooks",
+        "eslint-plugin-prettier",
+        "testing-library"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "eslint-config-prettier"
+    ],
+    "rules": {
+        "no-var": "error",
+        "no-case-declarations": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "off",
+        "no-dupe-else-if": "off",
+        "no-import-assign": "off",
+        "no-setter-return": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "testing-library/await-async-query": "error",
+        "testing-library/no-await-sync-query": "error",
+        "testing-library/no-debugging-utils": "warn",
+        "testing-library/no-dom-import": "off"
+    }
+}

@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {MenuItem, Stack, styled, Toolbar} from "@mui/material";
+import {Stack, styled, TextField, Toolbar} from "@mui/material";
 
 export const StyledImg = styled("img")(({theme}) => ({
     width: "80px",
@@ -19,8 +19,16 @@ export const StyledStack = styled(Stack)(({theme}) => ({
     [theme.breakpoints.down("sm")]: {
         display: "none",
     },
+    backgroundColor: "red",
+    width: "100%",
 }));
 
-export const StyledToolbar = styled(Toolbar)({});
+export const StyledToolbar = styled(Toolbar)({
+    display: "flex",
+    justifyContent: "space-between",
+});
 
-export const StyledMenuItem = styled(MenuItem)(() => ({}));
+export const StyledSearch = styled(TextField)({
+    width: "50%",
+    maxWidth: "600px",
+});

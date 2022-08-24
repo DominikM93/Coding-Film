@@ -1,28 +1,21 @@
 import React from "react";
-import {AppBar, Typography, IconButton} from "@mui/material";
-import {
-    StyledImg,
-    StyledLink,
-    StyledStack,
-    StyledToolbar,
-    StyledMenuItem,
-} from "./styles";
+import {AppBar, Typography} from "@mui/material";
+import {StyledLink, StyledToolbar, StyledSearch} from "./styles";
 
 function Navbar() {
     return (
         <>
             <AppBar>
                 <StyledToolbar>
-                    <StyledStack direction="row">
-                        <IconButton disabled>
-                            <StyledImg src="movie-icon.png" alt="f1" />
-                        </IconButton>
-                        <StyledMenuItem>
-                            <StyledLink to="/">
-                                <Typography variant="h6">Home</Typography>
-                            </StyledLink>
-                        </StyledMenuItem>
-                    </StyledStack>
+                    <StyledLink to="/">
+                        <Typography variant="h6">Coding Film</Typography>
+                    </StyledLink>
+
+                    <StyledSearch
+                        id="filled-basic"
+                        label="Search Movie or Show"
+                        variant="filled"
+                    />
                 </StyledToolbar>
             </AppBar>
         </>

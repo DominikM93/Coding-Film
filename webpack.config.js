@@ -7,16 +7,26 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/build"),
         filename: "bundle.js",
+        publicPath: "/",
     },
     plugins: [new HTMLWebpackPlugin({template: "./public/index.html"})],
+    devtool: "source-map",
     resolve: {
         modules: [__dirname, "src", "node_modules"],
         extensions: ["*", ".js", ".jsx", ".json"],
     },
     target: "web",
     devServer: {
-        port: "3000",
+        port: 3000,
         static: ["./public"],
+        historyApiFallback: true,
+        client: {
+            overlay: {
+                errors: true,
+                warnings: true,
+            },
+            progress: true,
+        },
     },
     module: {
         rules: [
@@ -35,8 +45,10 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /.png|svg|jpg|gif$/,
-                use: ["file-loader"],
+                enforce: "pre",
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: "source-map-loader",
             },
         ],
     },

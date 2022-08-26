@@ -5,7 +5,7 @@ import {StyledLink, StyledToolbar, StyledSearch} from "./styles";
 function Navbar() {
     return (
         <>
-            <AppBar>
+            <AppBar position="static">
                 <StyledToolbar>
                     <StyledLink to="/">
                         <Typography variant="h6">Coding Film</Typography>

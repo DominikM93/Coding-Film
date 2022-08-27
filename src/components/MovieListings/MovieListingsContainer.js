@@ -13,7 +13,17 @@ const MovieListingsContainer = () => {
     const isLoading = useSelector(getIsLoading);
     const movies = useSelector(getAllMovies);
 
-    return <MovieListings isLoading={isLoading} movies={movies} />;
+    return (
+        <>
+            {isLoading === null ? (
+                "null"
+            ) : isLoading ? (
+                "Loading..."
+            ) : (
+                <MovieListings isLoading={isLoading} movies={movies} />
+            )}
+        </>
+    );
 };
 
 export default MovieListingsContainer;

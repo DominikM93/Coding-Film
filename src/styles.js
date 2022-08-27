@@ -10,6 +10,6 @@ export const StyledBoxWrap = styled(Box)(() => ({
     paddingTop: "20px",
     paddingBottom: "5rem",
     backgroundColor: "white",
-    width: "90%",
+    width: "80%",
     margin: "0 auto",
 }));

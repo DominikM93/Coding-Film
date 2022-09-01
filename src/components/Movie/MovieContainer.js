@@ -4,29 +4,30 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchMovieById,
-    getMovieById,
-    getLoadingMovie,
-} from "../../features/movies/movieSlice";
+    getMovie,
+    getLoading,
+} from "../../features/movie/movieSlice";
 
 const MovieContainer = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
+    const movie = useSelector(getMovie);
+    const loading = useSelector(getLoading);
 
     useEffect(() => {
-        dispatch(fetchMovieById(id));
+        if (id !== movie.id) {
+            dispatch(fetchMovieById(id));
+        }
     }, []);
-
-    const isLoading = useSelector(getLoadingMovie);
-    const movie = useSelector(getMovieById);
 
     return (
         <>
-            {isLoading === null ? (
+            {loading === null ? (
                 "null"
-            ) : isLoading ? (
+            ) : loading ? (
                 "Loading..."
             ) : (
-                <Movie isLoading={isLoading} movie={movie} />
+                <Movie movie={movie} />
             )}
         </>
     );

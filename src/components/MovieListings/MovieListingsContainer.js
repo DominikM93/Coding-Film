@@ -1,23 +1,42 @@
 import React, {useEffect} from "react";
 import MovieListings from "./MovieListings";
-import {fetchMovies} from "../../features/movies/movieSlice";
+import {
+    fetchPopularMovies,
+    moviesSelectors,
+    getLoadingMovies,
+    getType,
+} from "../../features/movies/moviesSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllMovies, getLoadingMovies} from "../../features/movies/movieSlice";
 
 const MovieListingsContainer = () => {
     const dispatch = useDispatch();
+
+    const allIds = useSelector(moviesSelectors.selectIds);
+    const allEntities = useSelector(moviesSelectors.selectEntities);
+    const loading = useSelector(getLoadingMovies);
+    const type = useSelector(getType);
+
+    const denormlizeData = (ids, entities) => {
+        if (ids !== undefined) {
+            const data = ids.map((id) => entities[id]);
+
+            return data;
+        }
+    };
+
     useEffect(() => {
-        dispatch(fetchMovies());
+        if (allIds.length === 0) {
+            dispatch(fetchPopularMovies());
+        }
     }, []);
 
-    const isLoading = useSelector(getLoadingMovies);
-    const movies = useSelector(getAllMovies);
+    const movies = denormlizeData(allIds, allEntities);
 
     return (
         <>
-            {isLoading === null ? (
+            {loading === null ? (
                 "null"
-            ) : isLoading ? (
+            ) : loading ? (
                 "Loading..."
             ) : (
                 <MovieListings movies={movies} />

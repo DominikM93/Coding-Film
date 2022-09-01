@@ -1,22 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Grid, Stack} from "@mui/material";
+import {Grid, Stack, Typography} from "@mui/material";
 import MovieList from "../MovieCard/MovieList";
 
 const MovieListings = ({movies}) => {
     return (
         <>
             <Stack>
-                <Grid container>
-                    <Grid item md={2}></Grid>
-                    <Grid item md={8}>
-                        Rank and Title
+                <Grid container justifyContent="center">
+                    <Grid item md={2}>
+                        <Typography variant="h5">Rank</Typography>
+                    </Grid>
+                    <Grid item md={6}>
+                        <Typography variant="h5">Title</Typography>
                     </Grid>
                     <Grid item md={2}>
-                        IMDb Rating
+                        <Typography variant="h5">IMDb Rating</Typography>
                     </Grid>
                 </Grid>
-                {movies.items.map((movie, index) => (
+                {movies.map((movie, index) => (
                     <MovieList key={movie.id} movie={movie} index={index} />
                 ))}
             </Stack>
@@ -25,7 +27,7 @@ const MovieListings = ({movies}) => {
 };
 
 MovieListings.propTypes = {
-    movies: PropTypes.object,
+    movies: PropTypes.array,
 };
 
 export default MovieListings;

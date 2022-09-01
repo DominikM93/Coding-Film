@@ -16,6 +16,36 @@ export const fetchPopularMovies = createAsyncThunk(
     }
 );
 
+export const fetchPopularShows = createAsyncThunk(
+    "movies/fetchPopularShows",
+    async (_, {dispatch}) => {
+        const data = await fetch(
+            `https://imdb-api.com/en/API/MostPopularTVs/${APIKey}`
+        ).then((res) => res.json());
+        dispatch(setMovies(data.items));
+    }
+);
+
+export const fetchTopMovies = createAsyncThunk(
+    "movies/fetchTopMovies",
+    async (_, {dispatch}) => {
+        const data = await fetch(
+            `https://imdb-api.com/en/API/Top250Movies/${APIKey}`
+        ).then((res) => res.json());
+        dispatch(setMovies(data.items));
+    }
+);
+
+export const fetchTopShows = createAsyncThunk(
+    "movies/fetchTopShows",
+    async (_, {dispatch}) => {
+        const data = await fetch(
+            `https://imdb-api.com/en/API/Top250TVs/${APIKey}`
+        ).then((res) => res.json());
+        dispatch(setMovies(data.items));
+    }
+);
+
 const moviesAdapter = createEntityAdapter({
     selectId: (movie) => movie.id,
 });
@@ -24,7 +54,7 @@ const moviesSlice = createSlice({
     name: "movies",
     initialState: moviesAdapter.getInitialState({
         loadingMovies: null,
-        type: "popularMovies",
+        type: "Most Popular Movies",
     }),
     reducers: {
         setMovies: moviesAdapter.setAll,

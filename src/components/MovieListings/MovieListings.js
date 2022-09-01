@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import {Grid, Stack, Typography} from "@mui/material";
 import MovieList from "../MovieCard/MovieList";
 
-const MovieListings = ({movies}) => {
+const MovieListings = ({movies, type}) => {
     return (
         <>
+            {type}
             <Stack>
                 <Grid container justifyContent="center">
                     <Grid item md={2}>
@@ -28,6 +29,7 @@ const MovieListings = ({movies}) => {
 
 MovieListings.propTypes = {
     movies: PropTypes.array,
+    type: PropTypes.string,
 };
 
 export default MovieListings;

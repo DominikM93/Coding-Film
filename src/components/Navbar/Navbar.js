@@ -1,8 +1,9 @@
 import React from "react";
 import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
 import {StyledLink, StyledSearch} from "./styles";
+import PropTypes from "prop-types";
 
-function Navbar({open, handleClick, handleClose, anchorEl}) {
+function Navbar({open, handleClick, handleClose, anchorEl, changeMoviesType}) {
     return (
         <>
             <AppBar position="static">
@@ -21,16 +22,16 @@ function Navbar({open, handleClick, handleClose, anchorEl}) {
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={changeMoviesType}>
                                 Top 250 Movies
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={changeMoviesType}>
                                 Top 250 Shows
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={changeMoviesType}>
                                 Most Popular Movies
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={changeMoviesType}>
                                 Most Popular Shows
                             </MenuItem>
                         </Menu>
@@ -47,5 +48,13 @@ function Navbar({open, handleClick, handleClose, anchorEl}) {
         </>
     );
 }
+
+Navbar.propTypes = {
+    open: PropTypes.bool,
+    handleClick: PropTypes.func,
+    handleClose: PropTypes.func,
+    changeMoviesType: PropTypes.func,
+    anchorEl: PropTypes.object,
+};
 
 export default Navbar;

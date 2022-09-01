@@ -39,7 +39,7 @@ const MovieListingsContainer = () => {
             ) : loading ? (
                 "Loading..."
             ) : (
-                <MovieListings movies={movies} />
+                <MovieListings movies={movies} type={type} />
             )}
         </>
     );

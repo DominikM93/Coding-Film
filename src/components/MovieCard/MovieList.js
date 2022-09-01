@@ -16,7 +16,11 @@ const MovieList = ({movie}) => {
                     padding: "5px 20px",
                 }}>
                 <Grid item md={2}>
-                    <Typography variant="h6">{`${movie.rank} (${movie.rankUpDown})`}</Typography>
+                    <Typography variant="h6">{`${movie.rank} ${
+                        movie.rankUpDown === undefined
+                            ? ""
+                            : `(${movie.rankUpDown})`
+                    }`}</Typography>
                 </Grid>
                 <Grid item md={2}>
                     <StyledLink to={`/movie/${movie.id}`}>
@@ -33,9 +37,9 @@ const MovieList = ({movie}) => {
                     direction="column"
                     md={6}
                     sx={{width: "fit-content"}}>
-                    {/* <StyledLink to={`/movie/${movie.id}`}>
-                    </StyledLink> */}
-                    <Typography variant="h6">{`${movie.title} (${movie.year})`}</Typography>
+                    <StyledLink to={`/movie/${movie.id}`}>
+                        <Typography variant="h6">{`${movie.title} (${movie.year})`}</Typography>
+                    </StyledLink>
                 </Grid>
                 <Grid item md={2}>
                     <Typography variant="h6">

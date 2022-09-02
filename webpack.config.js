@@ -1,5 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
     entry: "./src/index.js",
@@ -9,7 +10,10 @@ module.exports = {
         filename: "bundle.js",
         publicPath: "/",
     },
-    plugins: [new HTMLWebpackPlugin({template: "./public/index.html"})],
+    plugins: [
+        new HTMLWebpackPlugin({template: "./public/index.html"}),
+        new Dotenv(),
+    ],
     devtool: "source-map",
     resolve: {
         modules: [__dirname, "src", "node_modules"],

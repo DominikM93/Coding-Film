@@ -3,7 +3,15 @@ import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
 import {StyledLink, StyledSearch} from "./styles";
 import PropTypes from "prop-types";
 
-function Navbar({open, handleClick, handleClose, anchorEl, changeMoviesType}) {
+function Navbar({
+    open,
+    setSearchTerm,
+    searchTerm,
+    handleClick,
+    handleClose,
+    anchorEl,
+    changeMoviesType,
+}) {
     return (
         <>
             <AppBar position="static">
@@ -41,6 +49,8 @@ function Navbar({open, handleClick, handleClose, anchorEl, changeMoviesType}) {
                             id="filled-basic"
                             label="Search Movie or Show"
                             variant="filled"
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={searchTerm}
                         />
                     </Grid>
                 </Grid>
@@ -51,6 +61,8 @@ function Navbar({open, handleClick, handleClose, anchorEl, changeMoviesType}) {
 
 Navbar.propTypes = {
     open: PropTypes.bool,
+    setSearchTerm: PropTypes.func,
+    searchTerm: PropTypes.string,
     handleClick: PropTypes.func,
     handleClose: PropTypes.func,
     changeMoviesType: PropTypes.func,

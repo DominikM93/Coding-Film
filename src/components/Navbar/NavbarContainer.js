@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "./Navbar";
 import {useDispatch} from "react-redux";
-import {fetchByType} from "../../features/movies/moviesSlice";
+import {fetchByType, fetchSearch} from "../../features/movies/moviesSlice";
 
 function NavbarContainer() {
+    const [searchTerm, setSearchTerm] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
@@ -20,22 +21,24 @@ function NavbarContainer() {
         const type = e.target.textContent;
 
         dispatch(fetchByType(type));
-        /* if (type === "Top 250 Movies") {
-            dispatch(fetchTopMovies());
-        } else if (type === "Top 250 Shows") {
-            dispatch(fetchTopShows());
-        } else if (type === "Most Popular Movies") {
-            dispatch(fetchPopularMovies());
-        } else if (type === "Most Popular Shows") {
-            dispatch(fetchPopularShows());
-        } */
-
         setAnchorEl(null);
     };
+
+    useEffect(() => {
+        const delayDebounce = setTimeout(() => {
+            if (searchTerm !== "")
+                dispatch(fetchSearch({type: "Search", search: searchTerm}));
+            setSearchTerm("");
+        }, 2500);
+
+        return () => clearTimeout(delayDebounce);
+    }, [searchTerm]);
 
     return (
         <Navbar
             open={open}
+            setSearchTerm={setSearchTerm}
+            searchTerm={searchTerm}
             anchorEl={anchorEl}
             handleClick={handleClick}
             handleClose={handleClose}

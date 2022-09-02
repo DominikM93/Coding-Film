@@ -4,8 +4,6 @@ import {
     createEntityAdapter,
 } from "@reduxjs/toolkit";
 
-const APIKey = "k_2gbajiv1";
-
 /* export const fetchPopularMovies = createAsyncThunk(
     "movies/fetchPopularMovies",
     async (_, {dispatch}) => {
@@ -53,31 +51,42 @@ export const fetchByType = createAsyncThunk(
 
         if (type === "Top 250 Movies") {
             const data = await fetch(
-                `https://imdb-api.com/en/API/Top250Movies/${APIKey}`
+                `https://imdb-api.com/en/API/Top250Movies/${process.env.APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
             fullType = "Top 250 Movies";
         } else if (type === "Top 250 Shows") {
             const data = await fetch(
-                `https://imdb-api.com/en/API/Top250TVs/${APIKey}`
+                `https://imdb-api.com/en/API/Top250TVs/${process.env.APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
             fullType = "Top 250 Shows";
         } else if (type === "Most Popular Movies") {
             const data = await fetch(
-                `https://imdb-api.com/en/API/MostPopularMovies/${APIKey}`
+                `https://imdb-api.com/en/API/MostPopularMovies/${process.env.APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
             fullType = "Most Popular Movies";
         } else if (type === "Most Popular Shows") {
             const data = await fetch(
-                `https://imdb-api.com/en/API/MostPopularTVs/${APIKey}`
+                `https://imdb-api.com/en/API/MostPopularTVs/${process.env.APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
             fullType = "Most Popular Shows";
         }
 
         return fullType;
+    }
+);
+
+export const fetchSearch = createAsyncThunk(
+    "movies/fetchSearch",
+    async ({type, search}, {dispatch}) => {
+        const data = await fetch(
+            `https://imdb-api.com/en/API/Search/${process.env.APIKey}/${search}`
+        ).then((res) => res.json());
+        dispatch(setMovies(data.results));
+        return type;
     }
 );
 
@@ -99,6 +108,13 @@ const moviesSlice = createSlice({
             state.loadingMovies = true;
         },
         [fetchByType.fulfilled]: (state, {payload}) => {
+            state.loadingMovies = false;
+            state.type = payload;
+        },
+        [fetchSearch.pending]: (state) => {
+            state.loadingMovies = true;
+        },
+        [fetchSearch.fulfilled]: (state, {payload}) => {
             state.loadingMovies = false;
             state.type = payload;
         },

@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import MovieListings from "./MovieListings";
 import {
-    fetchPopularMovies,
     moviesSelectors,
     getLoadingMovies,
     getType,
+    fetchByType,
 } from "../../features/movies/moviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -26,7 +26,7 @@ const MovieListingsContainer = () => {
 
     useEffect(() => {
         if (allIds.length === 0) {
-            dispatch(fetchPopularMovies());
+            dispatch(fetchByType("Most Popular Shows"));
         }
     }, []);
 

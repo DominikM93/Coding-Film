@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Grid, Stack, Typography} from "@mui/material";
-import MovieList from "../MovieCard/MovieList";
+import MovieList from "../MovieList/MovieList";
 
 const MovieListings = ({movies, type}) => {
     return (

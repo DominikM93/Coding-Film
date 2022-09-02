@@ -5,7 +5,7 @@ import MovieListingsContainer from "./components/MovieListings/MovieListingsCont
 import MovieContainer from "./components/Movie/MovieContainer";
 import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
-import Carousel from "./components/practice/Carousel";
+
 const App = () => {
     return (
         <>
@@ -13,7 +13,6 @@ const App = () => {
                 <NavbarContainer />
                 <StyledBoxWrap>
                     <Routes>
-                        <Route path="/test" element={<Carousel />} />
                         <Route path="/" element={<MovieListingsContainer />} />
                         <Route path="/movie/:id" element={<MovieContainer />} />
                     </Routes>

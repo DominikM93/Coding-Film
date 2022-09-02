@@ -1,12 +1,7 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar";
 import {useDispatch} from "react-redux";
-import {
-    fetchPopularMovies,
-    fetchTopMovies,
-    fetchTopShows,
-    fetchPopularShows,
-} from "../../features/movies/moviesSlice";
+import {fetchByType} from "../../features/movies/moviesSlice";
 
 function NavbarContainer() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -24,7 +19,8 @@ function NavbarContainer() {
     const changeMoviesType = (e) => {
         const type = e.target.textContent;
 
-        if (type === "Top 250 Movies") {
+        dispatch(fetchByType(type));
+        /* if (type === "Top 250 Movies") {
             dispatch(fetchTopMovies());
         } else if (type === "Top 250 Shows") {
             dispatch(fetchTopShows());
@@ -32,7 +28,8 @@ function NavbarContainer() {
             dispatch(fetchPopularMovies());
         } else if (type === "Most Popular Shows") {
             dispatch(fetchPopularShows());
-        }
+        } */
+
         setAnchorEl(null);
     };
 

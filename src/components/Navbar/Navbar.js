@@ -1,6 +1,6 @@
 import React from "react";
 import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
-import {StyledLink, StyledSearch} from "./styles";
+import {StyledLink, StyledSearch, StyledNavLink} from "./styles";
 import PropTypes from "prop-types";
 
 function Navbar({
@@ -31,23 +31,31 @@ function Navbar({
                             open={open}
                             onClose={handleClose}>
                             <MenuItem onClick={changeMoviesType}>
-                                Top 250 Movies
+                                <StyledNavLink to="/">
+                                    Top 250 Movies
+                                </StyledNavLink>
                             </MenuItem>
                             <MenuItem onClick={changeMoviesType}>
-                                Top 250 Shows
+                                <StyledNavLink to="/">
+                                    Top 250 Shows
+                                </StyledNavLink>
                             </MenuItem>
                             <MenuItem onClick={changeMoviesType}>
-                                Most Popular Movies
+                                <StyledNavLink to="/">
+                                    Most Popular Movies
+                                </StyledNavLink>
                             </MenuItem>
                             <MenuItem onClick={changeMoviesType}>
-                                Most Popular Shows
+                                <StyledNavLink to="/">
+                                    Most Popular Shows
+                                </StyledNavLink>
                             </MenuItem>
                         </Menu>
                     </Grid>
                     <Grid item md={8}>
                         <StyledSearch
                             id="filled-basic"
-                            label="Search Movie or Show"
+                            placeholder="Search Movie or Show"
                             variant="filled"
                             onChange={(e) => setSearchTerm(e.target.value)}
                             value={searchTerm}

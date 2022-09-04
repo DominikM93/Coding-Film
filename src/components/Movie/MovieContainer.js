@@ -20,6 +20,11 @@ const MovieContainer = () => {
         }
     }, []);
 
+    let actors;
+    if (movie.actorList !== undefined) {
+        actors = movie.actorList.slice(0, 4);
+    }
+
     return (
         <>
             {loading === null ? (
@@ -27,7 +32,7 @@ const MovieContainer = () => {
             ) : loading ? (
                 "Loading..."
             ) : (
-                <Movie movie={movie} />
+                <Movie movie={movie} actors={actors} />
             )}
         </>
     );

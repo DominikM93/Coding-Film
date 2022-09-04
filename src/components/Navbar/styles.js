@@ -15,6 +15,12 @@ export const StyledLink = styled(Link)(() => ({
     fontSize: "20px",
 }));
 
+export const StyledNavLink = styled(Link)(() => ({
+    textDecoration: "none",
+    color: "black",
+    fontSize: "20px",
+}));
+
 export const StyledStack = styled(Stack)(({theme}) => ({
     [theme.breakpoints.down("sm")]: {
         display: "none",

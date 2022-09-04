@@ -3,6 +3,7 @@ import Footer from "./components/Footer/Footer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import MovieListingsContainer from "./components/MovieListings/MovieListingsContainer";
 import MovieContainer from "./components/Movie/MovieContainer";
+import ActorContainer from "./components/Actor/ActorContainer";
 import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
 
@@ -15,6 +16,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<MovieListingsContainer />} />
                         <Route path="/movie/:id" element={<MovieContainer />} />
+                        <Route path="/actor/:id" element={<ActorContainer />} />
                     </Routes>
                 </StyledBoxWrap>
                 <Footer />

@@ -2,9 +2,14 @@ import {Stack} from "@mui/material";
 import React from "react";
 import {Grade, CalendarMonth, AccessTime} from "@mui/icons-material";
 import PropTypes from "prop-types";
-import {StyledTypography, StyledStack, StyledStack1} from "./styles";
+import {
+    StyledTypography,
+    StyledStack,
+    StyledStack1,
+    StyledActorLink,
+} from "./styles";
 
-const Movie = ({movie}) => {
+const Movie = ({movie, actors}) => {
     return (
         <>
             <StyledStack direction="row">
@@ -30,16 +35,37 @@ const Movie = ({movie}) => {
                         {movie.plot}
                     </StyledTypography>
                     <StyledTypography variant="h5">
-                        Directors: {movie.directors}
+                        Directors:
+                        {movie.directorList.map(({id, name}, index) => (
+                            <StyledActorLink key={id} to={`/actor/${id}`}>
+                                {index !== movie.directorList.length - 1
+                                    ? `${name},`
+                                    : name}
+                            </StyledActorLink>
+                        ))}
                     </StyledTypography>
                     <StyledTypography variant="h5">
-                        Actors: {movie.stars}
+                        Actors:
+                        {actors.map(({id, name}, index) => (
+                            <StyledActorLink key={id} to={`/actor/${id}`}>
+                                {index !== actors.length - 1
+                                    ? `${name},`
+                                    : name}
+                            </StyledActorLink>
+                        ))}
                     </StyledTypography>
                     <StyledTypography variant="h5">
                         Genres: {movie.genres}
                     </StyledTypography>
                     <StyledTypography variant="h5">
-                        Writers: {movie.writers}
+                        Writers:
+                        {movie.writerList.map(({id, name}, index) => (
+                            <StyledActorLink key={id} to={`/actor/${id}`}>
+                                {index !== movie.writerList.length - 1
+                                    ? `${name},`
+                                    : name}
+                            </StyledActorLink>
+                        ))}
                     </StyledTypography>
                     <StyledTypography variant="h5">
                         Awards: {movie.awards}
@@ -57,6 +83,7 @@ const Movie = ({movie}) => {
 
 Movie.propTypes = {
     movie: PropTypes.object,
+    actors: PropTypes.array,
 };
 
 export default Movie;

@@ -8,6 +8,7 @@ import {
     StyledStack1,
     StyledActorLink,
 } from "./styles";
+import SlideshowContainer from "../Slideshow/SlideshowContainer";
 
 const Movie = ({movie, actors}) => {
     return (
@@ -75,7 +76,7 @@ const Movie = ({movie, actors}) => {
                         width="855"
                         src={movie.trailer.linkEmbed}></iframe>
                 </StyledStack1>
-                <img style={{height: "700px"}} src={movie.image} alt="" />
+                <SlideshowContainer images={movie.images} />
             </StyledStack>
         </>
     );

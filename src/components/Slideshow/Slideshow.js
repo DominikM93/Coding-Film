@@ -12,7 +12,6 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 const Slideshow = ({images, activeIndex, moveTo}) => {
-    console.log(images);
     return (
         <StyledSlideWrapper>
             <StyledImageBox>

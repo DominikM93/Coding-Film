@@ -7,7 +7,6 @@ export const fetchActorById = createAsyncThunk(
             `https://imdb-api.com/en/API/Name/${process.env.APIKey}/${id}`
         ).then((res) => res.json());
 
-        console.log(data);
         return data;
     }
 );

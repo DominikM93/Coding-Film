@@ -29,7 +29,7 @@ function NavbarContainer() {
             if (searchTerm !== "")
                 dispatch(fetchSearch({type: "Search", search: searchTerm}));
             setSearchTerm("");
-        }, 2500);
+        }, 2000);
 
         return () => clearTimeout(delayDebounce);
     }, [searchTerm]);

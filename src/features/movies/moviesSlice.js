@@ -4,45 +4,17 @@ import {
     createEntityAdapter,
 } from "@reduxjs/toolkit";
 
-/* export const fetchPopularMovies = createAsyncThunk(
-    "movies/fetchPopularMovies",
+export const fetchInTheaters = createAsyncThunk(
+    "movies/fetchInTheaters",
     async (_, {dispatch}) => {
         const data = await fetch(
-            `https://imdb-api.com/en/API/MostPopularMovies/${APIKey}`
+            `https://imdb-api.com/en/API/InTheaters/${process.env.APIKey}`
         ).then((res) => res.json());
+
         dispatch(setMovies(data.items));
+        return "In Theaters";
     }
 );
-
-export const fetchPopularShows = createAsyncThunk(
-    "movies/fetchPopularShows",
-    async (_, {dispatch}) => {
-        const data = await fetch(
-            `https://imdb-api.com/en/API/MostPopularTVs/${APIKey}`
-        ).then((res) => res.json());
-        dispatch(setMovies(data.items));
-    }
-);
-
-export const fetchTopMovies = createAsyncThunk(
-    "movies/fetchTopMovies",
-    async (_, {dispatch}) => {
-        const data = await fetch(
-            `https://imdb-api.com/en/API/Top250Movies/${APIKey}`
-        ).then((res) => res.json());
-        dispatch(setMovies(data.items));
-    }
-);
-
-export const fetchTopShows = createAsyncThunk(
-    "movies/fetchTopShows",
-    async (_, {dispatch}) => {
-        const data = await fetch(
-            `https://imdb-api.com/en/API/Top250TVs/${APIKey}`
-        ).then((res) => res.json());
-        dispatch(setMovies(data.items));
-    }
-); */
 
 export const fetchByType = createAsyncThunk(
     "movies/fetchByType",
@@ -97,31 +69,38 @@ const moviesAdapter = createEntityAdapter({
 const moviesSlice = createSlice({
     name: "movies",
     initialState: moviesAdapter.getInitialState({
-        loadingMovies: null,
+        loading: true,
         type: "Most Popular Movies",
     }),
     reducers: {
         setMovies: moviesAdapter.setAll,
     },
     extraReducers: {
+        [fetchInTheaters.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchInTheaters.fulfilled]: (state, {payload}) => {
+            state.loading = false;
+            state.type = payload;
+        },
         [fetchByType.pending]: (state) => {
-            state.loadingMovies = true;
+            state.loading = true;
         },
         [fetchByType.fulfilled]: (state, {payload}) => {
-            state.loadingMovies = false;
+            state.loading = false;
             state.type = payload;
         },
         [fetchSearch.pending]: (state) => {
-            state.loadingMovies = true;
+            state.loading = true;
         },
         [fetchSearch.fulfilled]: (state, {payload}) => {
-            state.loadingMovies = false;
+            state.loading = false;
             state.type = payload;
         },
     },
 });
 
-export const getLoadingMovies = (state) => state.movies.loadingMovies;
+export const getLoadingMovies = (state) => state.movies.loading;
 export const getType = (state) => state.movies.type;
 
 export const {setMovies} = moviesSlice.actions;

@@ -17,7 +17,7 @@ const movieSlice = createSlice({
     name: "movie",
     initialState: {
         movie: {},
-        loading: null,
+        loading: true,
     },
     reducers: {},
     extraReducers: {

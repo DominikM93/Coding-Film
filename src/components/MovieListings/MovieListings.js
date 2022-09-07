@@ -1,28 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Grid, Stack, Typography} from "@mui/material";
-import MovieList from "../MovieList/MovieList";
+import {Grid} from "@mui/material";
+import MovieCard from "../MovieCard/MovieCard";
 
 const MovieListings = ({movies, type}) => {
     return (
         <>
             {type}
-            <Stack>
-                <Grid container justifyContent="center">
-                    <Grid item md={2}>
-                        <Typography variant="h5">Rank</Typography>
-                    </Grid>
-                    <Grid item md={6}>
-                        <Typography variant="h5">Title</Typography>
-                    </Grid>
-                    <Grid item md={2}>
-                        <Typography variant="h5">IMDb Rating</Typography>
-                    </Grid>
-                </Grid>
-                {movies.map((movie, index) => (
-                    <MovieList key={movie.id} movie={movie} index={index} />
+            <Grid container justifyContent="space-evenly">
+                {movies.map((movie) => (
+                    <MovieCard key={movie.id} movie={movie} type={type} />
                 ))}
-            </Stack>
+            </Grid>
         </>
     );
 };

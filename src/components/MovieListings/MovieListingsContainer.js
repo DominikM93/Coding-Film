@@ -4,7 +4,7 @@ import {
     moviesSelectors,
     getLoadingMovies,
     getType,
-    fetchByType,
+    fetchInTheaters,
 } from "../../features/movies/moviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -26,7 +26,7 @@ const MovieListingsContainer = () => {
 
     useEffect(() => {
         if (allIds.length === 0) {
-            dispatch(fetchByType("Most Popular Shows"));
+            dispatch(fetchInTheaters());
         }
     }, []);
 
@@ -34,9 +34,7 @@ const MovieListingsContainer = () => {
 
     return (
         <>
-            {loading === null ? (
-                "null"
-            ) : loading ? (
+            {loading ? (
                 "Loading..."
             ) : (
                 <MovieListings movies={movies} type={type} />

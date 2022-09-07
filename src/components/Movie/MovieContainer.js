@@ -26,15 +26,7 @@ const MovieContainer = () => {
     }
 
     return (
-        <>
-            {loading === null ? (
-                "null"
-            ) : loading ? (
-                "Loading..."
-            ) : (
-                <Movie movie={movie} actors={actors} />
-            )}
-        </>
+        <>{loading ? "Loading..." : <Movie movie={movie} actors={actors} />}</>
     );
 };
 

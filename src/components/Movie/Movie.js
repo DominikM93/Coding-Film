@@ -71,10 +71,12 @@ const Movie = ({movie, actors}) => {
                     <StyledTypography variant="h5">
                         Awards: {movie.awards}
                     </StyledTypography>
-                    <iframe
+
+                    {/* <iframe
                         height="450"
                         width="855"
-                        src={movie.trailer.linkEmbed}></iframe>
+                        src={movie.trailer.linkEmbed}
+                    /> */}
                 </StyledStack1>
                 <SlideshowContainer images={movie.images} />
             </StyledStack>

@@ -1,6 +1,8 @@
 import React from "react";
 import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
 import {StyledLink, StyledSearch, StyledNavLink} from "./styles";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchInTheaters, getType} from "../../features/movies/moviesSlice";
 import PropTypes from "prop-types";
 
 function Navbar({
@@ -12,6 +14,8 @@ function Navbar({
     anchorEl,
     changeMoviesType,
 }) {
+    const dispatch = useDispatch();
+    const type = useSelector(getType);
     return (
         <>
             <AppBar position="static">
@@ -19,7 +23,11 @@ function Navbar({
                     <Grid item md={1}></Grid>
                     <Grid item md={1}>
                         <StyledLink to="/">
-                            <Typography variant="h6">Coding Film</Typography>
+                            <Typography
+                                variant="h6"
+                                onClick={() => dispatch(fetchInTheaters())}>
+                                Coding Film
+                            </Typography>
                         </StyledLink>
                     </Grid>
                     <Grid item md={1}>
@@ -30,22 +38,30 @@ function Navbar({
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}>
-                            <MenuItem onClick={changeMoviesType}>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Top 250 Movies"}>
                                 <StyledNavLink to="/">
                                     Top 250 Movies
                                 </StyledNavLink>
                             </MenuItem>
-                            <MenuItem onClick={changeMoviesType}>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Top 250 Shows"}>
                                 <StyledNavLink to="/">
                                     Top 250 Shows
                                 </StyledNavLink>
                             </MenuItem>
-                            <MenuItem onClick={changeMoviesType}>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Most Popular Movies"}>
                                 <StyledNavLink to="/">
                                     Most Popular Movies
                                 </StyledNavLink>
                             </MenuItem>
-                            <MenuItem onClick={changeMoviesType}>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Most Popular Shows"}>
                                 <StyledNavLink to="/">
                                     Most Popular Shows
                                 </StyledNavLink>

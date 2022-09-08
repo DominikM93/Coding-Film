@@ -1,19 +1,12 @@
 import React from "react";
 import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
-import {StyledLink, StyledSearch, StyledNavLink} from "./styles";
+import {StyledLink, StyledNavLink} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchInTheaters, getType} from "../../features/movies/moviesSlice";
 import PropTypes from "prop-types";
+import SearchBarContainer from "../SearchBar/SearchBarContainer";
 
-function Navbar({
-    open,
-    setSearchTerm,
-    searchTerm,
-    handleClick,
-    handleClose,
-    anchorEl,
-    changeMoviesType,
-}) {
+function Navbar({open, handleClick, handleClose, anchorEl, changeMoviesType}) {
     const dispatch = useDispatch();
     const type = useSelector(getType);
     return (
@@ -69,13 +62,7 @@ function Navbar({
                         </Menu>
                     </Grid>
                     <Grid item md={8}>
-                        <StyledSearch
-                            id="filled-basic"
-                            placeholder="Search Movie or Show"
-                            variant="filled"
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            value={searchTerm}
-                        />
+                        <SearchBarContainer />
                     </Grid>
                 </Grid>
             </AppBar>
@@ -85,8 +72,6 @@ function Navbar({
 
 Navbar.propTypes = {
     open: PropTypes.bool,
-    setSearchTerm: PropTypes.func,
-    searchTerm: PropTypes.string,
     handleClick: PropTypes.func,
     handleClose: PropTypes.func,
     changeMoviesType: PropTypes.func,

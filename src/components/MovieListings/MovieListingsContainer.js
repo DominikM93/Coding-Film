@@ -19,7 +19,6 @@ const MovieListingsContainer = () => {
     const denormlizeData = (ids, entities) => {
         if (ids !== undefined) {
             const data = ids.map((id) => entities[id]);
-
             return data;
         }
     };

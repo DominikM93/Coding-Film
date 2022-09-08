@@ -6,6 +6,7 @@ import MovieContainer from "./components/Movie/MovieContainer";
 import ActorContainer from "./components/Actor/ActorContainer";
 import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
+import SearchListingsContainer from "./components/SearchListings/SearchListingsContainer";
 
 const App = () => {
     return (
@@ -17,6 +18,10 @@ const App = () => {
                         <Route path="/" element={<MovieListingsContainer />} />
                         <Route path="/movie/:id" element={<MovieContainer />} />
                         <Route path="/actor/:id" element={<ActorContainer />} />
+                        <Route
+                            path="/search/:type"
+                            element={<SearchListingsContainer />}
+                        />
                     </Routes>
                 </StyledBoxWrap>
                 <Footer />

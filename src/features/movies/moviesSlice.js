@@ -51,14 +51,14 @@ export const fetchByType = createAsyncThunk(
     }
 );
 
-export const fetchSearch = createAsyncThunk(
-    "movies/fetchSearch",
-    async ({type, search}, {dispatch}) => {
+export const fetchSearchTitle = createAsyncThunk(
+    "movies/fetchSearchTitle",
+    async (searchTerm, {dispatch}) => {
         const data = await fetch(
-            `https://imdb-api.com/en/API/Search/${process.env.APIKey}/${search}`
+            `https://imdb-api.com/en/API/SearchTitle/${process.env.APIKey}/${searchTerm}`
         ).then((res) => res.json());
+
         dispatch(setMovies(data.results));
-        return type;
     }
 );
 
@@ -70,7 +70,7 @@ const moviesSlice = createSlice({
     name: "movies",
     initialState: moviesAdapter.getInitialState({
         loading: true,
-        type: "Most Popular Movies",
+        type: "",
     }),
     reducers: {
         setMovies: moviesAdapter.setAll,
@@ -90,12 +90,11 @@ const moviesSlice = createSlice({
             state.loading = false;
             state.type = payload;
         },
-        [fetchSearch.pending]: (state) => {
+        [fetchSearchTitle.pending]: (state) => {
             state.loading = true;
         },
-        [fetchSearch.fulfilled]: (state, {payload}) => {
+        [fetchSearchTitle.fulfilled]: (state) => {
             state.loading = false;
-            state.type = payload;
         },
     },
 });

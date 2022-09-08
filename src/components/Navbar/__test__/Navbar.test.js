@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import {BrowserRouter} from "react-router-dom";
 
 describe("<Navbar/>", () => {

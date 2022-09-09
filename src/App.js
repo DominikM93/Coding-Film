@@ -11,6 +11,7 @@ import SearchListingsContainer from "./components/SearchListings/SearchListingsC
 const App = () => {
     return (
         <>
+            {process.env.NODE_ENV}
             <StyledBoxContainer>
                 <NavbarContainer />
                 <StyledBoxWrap>

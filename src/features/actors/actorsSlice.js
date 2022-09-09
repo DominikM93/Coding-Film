@@ -8,7 +8,7 @@ export const fetchSearchName = createAsyncThunk(
     "actors/fetchSearchName",
     async (searchTerm, {dispatch}) => {
         const data = await fetch(
-            `https://imdb-api.com/en/API/SearchName/${process.env.APIKey}/${searchTerm}`
+            `https://imdb-api.com/en/API/SearchName/${process.env.REACT_APP_APIKey}/${searchTerm}`
         ).then((res) => res.json());
 
         dispatch(setActors(data.results));

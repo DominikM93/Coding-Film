@@ -4,7 +4,7 @@ export const fetchActorById = createAsyncThunk(
     "actor/fetchActorById",
     async (id) => {
         const data = await fetch(
-            `https://imdb-api.com/en/API/Name/${process.env.APIKey}/${id}`
+            `https://imdb-api.com/en/API/Name/${process.env.REACT_APP_APIKey}/${id}`
         ).then((res) => res.json());
 
         return data;

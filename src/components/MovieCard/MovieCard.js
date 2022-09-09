@@ -2,33 +2,42 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Typography} from "@mui/material";
 import {StyledLink, StyledImg, StyledPaper, StyledGrade} from "./styles";
+import {useSelector} from "react-redux";
+import {moviesSelectors} from "../../features/movies/moviesSlice";
 
-const MovieCard = ({movie}) => (
-    <StyledLink to={`/movie/${movie.id}`}>
-        <StyledPaper elevation={2}>
-            <StyledImg src={movie.image} alt={movie.title} />
-            <Typography variant="h6">{`${movie.title} (${movie.year})`}</Typography>
+const MovieCard = ({movie, handleOnClick}) => {
+    const allIds = useSelector(moviesSelectors.selectIds);
 
-            {movie.rank === undefined ? (
-                ""
-            ) : (
-                <Typography variant="h6">{`Rank: ${movie.rank} ${
-                    movie.rankUpDown === undefined
-                        ? ""
-                        : `(${movie.rankUpDown})`
-                }`}</Typography>
-            )}
+    return (
+        <StyledLink
+            to={`/movie/${movie.id}`}
+            onClick={() => handleOnClick(movie.id, allIds)}>
+            <StyledPaper elevation={2}>
+                <StyledImg src={movie.image} alt={movie.title} />
+                <Typography variant="h6">{`${movie.title} (${movie.year})`}</Typography>
 
-            <Typography variant="h6">
-                <StyledGrade />
-                {movie.imDbRating}
-            </Typography>
-        </StyledPaper>
-    </StyledLink>
-);
+                {movie.rank === undefined ? (
+                    ""
+                ) : (
+                    <Typography variant="h6">{`Rank: ${movie.rank} ${
+                        movie.rankUpDown === undefined
+                            ? ""
+                            : `(${movie.rankUpDown})`
+                    }`}</Typography>
+                )}
+
+                <Typography variant="h6">
+                    <StyledGrade />
+                    {movie.imDbRating}
+                </Typography>
+            </StyledPaper>
+        </StyledLink>
+    );
+};
 
 MovieCard.propTypes = {
     movie: PropTypes.object,
+    handleOnClick: PropTypes.func,
 };
 
 export default MovieCard;

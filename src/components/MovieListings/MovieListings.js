@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Grid} from "@mui/material";
-import MovieCard from "../MovieCard/MovieCard";
-
+import MovieCardContainer from "../MovieCard/MovieCardContainer";
 const MovieListings = ({movies, type}) => (
     <>
         {type}
         <Grid container justifyContent="space-evenly">
             {movies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} type={type} />
+                <MovieCardContainer key={movie.id} movie={movie} />
             ))}
         </Grid>
     </>

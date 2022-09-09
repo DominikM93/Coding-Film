@@ -4,30 +4,32 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchMovieById,
-    getMovie,
-    getLoading,
-} from "../../features/movie/movieSlice";
+    moviesSelectors,
+    getLoadingMovies,
+} from "../../features/movies/moviesSlice";
 
 const MovieContainer = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const movie = useSelector(getMovie);
-    const loading = useSelector(getLoading);
+    const loading = useSelector(getLoadingMovies);
+    const allIds = useSelector(moviesSelectors.selectIds);
 
     useEffect(() => {
-        if (id !== movie.id) {
-            dispatch(fetchMovieById(id));
-        }
-    }, []);
+        dispatch(fetchMovieById({id, allIds}));
+    }, [dispatch]);
 
+    const movie = useSelector((state) => moviesSelectors.selectById(state, id));
     let actors;
-    if (movie.actorList !== undefined) {
-        actors = movie.actorList.slice(0, 4);
+    let content = "Loading...";
+
+    if (!loading) {
+        if (movie.loading !== undefined) {
+            actors = movie.actorList.slice(0, 4);
+            content = <Movie movie={movie} actors={actors} />;
+        }
     }
 
-    return (
-        <>{loading ? "Loading..." : <Movie movie={movie} actors={actors} />}</>
-    );
+    return <>{content}</>;
 };
 
 export default MovieContainer;

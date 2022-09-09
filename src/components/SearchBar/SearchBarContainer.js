@@ -5,7 +5,7 @@ import {fetchSearchName} from "../../features/actors/actorsSlice";
 import {fetchSearchTitle} from "../../features/movies/moviesSlice";
 import {useNavigate} from "react-router-dom";
 
-function SearchBarContainer() {
+const SearchBarContainer = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchType, setSearchType] = useState("Titles");
     const dispatch = useDispatch();
@@ -38,6 +38,6 @@ function SearchBarContainer() {
             setSearchTerm={setSearchTerm}
         />
     );
-}
+};
 
 export default SearchBarContainer;

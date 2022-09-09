@@ -11,4 +11,5 @@ export const store = configureStore({
         actors: actorsReducer,
         actor: actorReducer,
     },
+    devTools: process.env.NODE_ENV !== "production",
 });

@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchInTheaters, getType} from "../../features/movies/moviesSlice";
 import PropTypes from "prop-types";
 import SearchBarContainer from "../SearchBar/SearchBarContainer";
+import {FormattedMessage} from "react-intl";
+import LanguagePickerContainer from "../LanguagePicker/LanguagePickerContainer";
 
 const Navbar = ({
     open,
@@ -23,44 +25,66 @@ const Navbar = ({
                     <StyledLink to="/">
                         <Typography
                             variant="h6"
-                            onClick={() => dispatch(fetchInTheaters())}>
+                            onClick={() => {
+                                if (type !== "In Theaters")
+                                    dispatch(fetchInTheaters());
+                            }}>
                             Coding Film
                         </Typography>
                     </StyledLink>
                 </Grid>
                 <Grid item md={1}>
                     <Button variant="contained" onClick={handleClick}>
-                        Menu
+                        <FormattedMessage id="menu" defaultMessage="Menu" />
                     </Button>
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                         <MenuItem
                             onClick={changeMoviesType}
                             disabled={type === "Top 250 Movies"}>
-                            <StyledNavLink to="/">Top 250 Movies</StyledNavLink>
+                            <StyledNavLink to="/">
+                                <FormattedMessage
+                                    id="topMovies"
+                                    defaultMessage="Top 250 Movies"
+                                />
+                            </StyledNavLink>
                         </MenuItem>
                         <MenuItem
                             onClick={changeMoviesType}
                             disabled={type === "Top 250 Shows"}>
-                            <StyledNavLink to="/">Top 250 Shows</StyledNavLink>
+                            <StyledNavLink to="/">
+                                <FormattedMessage
+                                    id="topShows"
+                                    defaultMessage="Top 250 Shows"
+                                />
+                            </StyledNavLink>
                         </MenuItem>
                         <MenuItem
                             onClick={changeMoviesType}
                             disabled={type === "Most Popular Movies"}>
                             <StyledNavLink to="/">
-                                Most Popular Movies
+                                <FormattedMessage
+                                    id="popularMovies"
+                                    defaultMessage="Most Popular Movies"
+                                />
                             </StyledNavLink>
                         </MenuItem>
                         <MenuItem
                             onClick={changeMoviesType}
                             disabled={type === "Most Popular Shows"}>
                             <StyledNavLink to="/">
-                                Most Popular Shows
+                                <FormattedMessage
+                                    id="popularShows"
+                                    defaultMessage="Most Popular Shows"
+                                />
                             </StyledNavLink>
                         </MenuItem>
                     </Menu>
                 </Grid>
-                <Grid item md={8}>
+                <Grid item md={7}>
                     <SearchBarContainer />
+                </Grid>
+                <Grid item md={1}>
+                    <LanguagePickerContainer />
                 </Grid>
             </Grid>
         </AppBar>

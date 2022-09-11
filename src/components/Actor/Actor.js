@@ -4,6 +4,7 @@ import {Box, Stack, Typography} from "@mui/material";
 import {StyledLink} from "./styles";
 import {moviesSelectors} from "../../features/movies/moviesSlice";
 import {useSelector} from "react-redux";
+import {FormattedMessage} from "react-intl";
 
 const Actor = ({actor, handleOnClick}) => {
     const allIds = useSelector(moviesSelectors.selectIds);
@@ -12,22 +13,57 @@ const Actor = ({actor, handleOnClick}) => {
             <Stack direction="row">
                 <Stack>
                     <Typography variant="h4">{actor.name}</Typography>
-                    <Typography variant="h6">Roles: {actor.role}</Typography>
                     <Typography variant="h6">
-                        Date of Birth: {actor.birthDate}
+                        <FormattedMessage id="roles" defaultMessage="Roles: " />
+                        {actor.role}
                     </Typography>
                     <Typography variant="h6">
-                        {actor.deathDate !== null
-                            ? `Date of Death: ${actor.deathDate}`
-                            : ""}
+                        <FormattedMessage
+                            id="dob"
+                            defaultMessage=" Date of Birth:"
+                        />
+                        {actor.birthDate}
                     </Typography>
-                    <Typography variant="h6">Awards: {actor.awards}</Typography>
                     <Typography variant="h6">
-                        Summary: {actor.summary}
+                        {actor.deathDate !== null ? (
+                            <>
+                                <FormattedMessage
+                                    id="dod"
+                                    defaultMessage="Date of Death: "
+                                />
+                                {actor.deathDate}
+                            </>
+                        ) : (
+                            ""
+                        )}
                     </Typography>
-                    <Typography variant="h6">Height: {actor.height}</Typography>
                     <Typography variant="h6">
-                        Known For:
+                        <FormattedMessage
+                            id="awards"
+                            defaultMessage="Awards: "
+                        />
+                        {actor.awards}
+                    </Typography>
+                    <Typography variant="h6">
+                        <FormattedMessage
+                            id="summary"
+                            defaultMessage="Summary: "
+                        />
+                        {actor.summary}
+                    </Typography>
+                    <Typography variant="h6">
+                        <FormattedMessage
+                            id="height"
+                            defaultMessage="Height: "
+                        />
+                        {actor.height}
+                    </Typography>
+                    <Typography variant="h6">
+                        <FormattedMessage
+                            id="knownFor"
+                            defaultMessage="Known For: "
+                        />
+
                         {actor.knownFor.map(({id, title}, index) => (
                             <StyledLink
                                 to={`/movie/${id}`}

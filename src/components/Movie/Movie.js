@@ -9,6 +9,7 @@ import {
     StyledActorLink,
 } from "./styles";
 import SlideshowContainer from "../Slideshow/SlideshowContainer";
+import {FormattedMessage} from "react-intl";
 
 const Movie = ({movie, actors}) => (
     <StyledStack direction="row">
@@ -30,7 +31,7 @@ const Movie = ({movie, actors}) => (
             </Stack>
             <StyledTypography variant="h6">{movie.plot}</StyledTypography>
             <StyledTypography variant="h5">
-                Directors:
+                <FormattedMessage id="directors" defaultMessage="Directors: " />
                 {movie.directorList.map(({id, name}, index) => (
                     <StyledActorLink key={id} to={`/actor/${id}`}>
                         {index !== movie.directorList.length - 1
@@ -40,7 +41,7 @@ const Movie = ({movie, actors}) => (
                 ))}
             </StyledTypography>
             <StyledTypography variant="h5">
-                Actors:
+                <FormattedMessage id="actors" defaultMessage="Actors: " />
                 {actors.map(({id, name}, index) => (
                     <StyledActorLink key={id} to={`/actor/${id}`}>
                         {index !== actors.length - 1 ? `${name},` : name}
@@ -48,10 +49,11 @@ const Movie = ({movie, actors}) => (
                 ))}
             </StyledTypography>
             <StyledTypography variant="h5">
-                Genres: {movie.genres}
+                <FormattedMessage id="genres" defaultMessage="Genres: " />
+                {movie.genres}
             </StyledTypography>
             <StyledTypography variant="h5">
-                Writers:
+                <FormattedMessage id="writers" defaultMessage="Writers: " />
                 {movie.writerList.map(({id, name}, index) => (
                     <StyledActorLink key={id} to={`/actor/${id}`}>
                         {index !== movie.writerList.length - 1
@@ -61,7 +63,8 @@ const Movie = ({movie, actors}) => (
                 ))}
             </StyledTypography>
             <StyledTypography variant="h5">
-                Awards: {movie.awards}
+                <FormattedMessage id="awards" defaultMessage="Awards: " />
+                {movie.awards}
             </StyledTypography>
         </StyledStack1>
         <SlideshowContainer images={movie.images} />

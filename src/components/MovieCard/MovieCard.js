@@ -7,7 +7,6 @@ import {moviesSelectors} from "../../features/movies/moviesSlice";
 
 const MovieCard = ({movie, handleOnClick}) => {
     const allIds = useSelector(moviesSelectors.selectIds);
-
     return (
         <StyledLink
             to={`/movie/${movie.id}`}

@@ -1,7 +1,7 @@
 import {Box, styled} from "@mui/material";
 
 export const StyledBoxFooter = styled(Box)(() => ({
-    backgroundColor: "rgb(102, 102, 102)",
+    backgroundColor: "#616161",
     color: "white",
     padding: "10px 0",
     textAlign: "center",

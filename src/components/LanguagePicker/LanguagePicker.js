@@ -1,7 +1,9 @@
 import React from "react";
-import {Button, Menu, MenuItem} from "@mui/material";
+import {Menu, MenuItem} from "@mui/material";
 import PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
+import LanguageIcon from "@mui/icons-material/Language";
+import {StyledIconButton} from "./styles";
 
 const LanguagePicker = ({
     open,
@@ -12,9 +14,9 @@ const LanguagePicker = ({
 }) => {
     return (
         <>
-            <Button variant="contained" onClick={handleClick}>
-                <FormattedMessage id="language" defaultMessage="Languages" />
-            </Button>
+            <StyledIconButton variant="contained" onClick={handleClick}>
+                <LanguageIcon />
+            </StyledIconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 <MenuItem onClick={changeLocale} id="en-US">
                     <FormattedMessage id="english" defaultMessage="English" />

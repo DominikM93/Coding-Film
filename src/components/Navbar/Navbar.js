@@ -1,12 +1,27 @@
 import React from "react";
-import {AppBar, Button, Grid, Menu, MenuItem, Typography} from "@mui/material";
-import {StyledLink, StyledNavLink} from "./styles";
+import {
+    AppBar,
+    Grid,
+    IconButton,
+    Menu,
+    MenuItem,
+    Typography,
+} from "@mui/material";
+import {
+    StyledLink,
+    StyledNavLink,
+    StyledStack,
+    StyledMenuIcon,
+    StyledGridContainer,
+    StyledGridContainerMobile,
+} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchInTheaters, getType} from "../../features/movies/moviesSlice";
 import PropTypes from "prop-types";
 import SearchBarContainer from "../SearchBar/SearchBarContainer";
 import {FormattedMessage} from "react-intl";
 import LanguagePickerContainer from "../LanguagePicker/LanguagePickerContainer";
+import MobileDrawerContainer from "../MobileDrawer/MobileDrawerContainer";
 
 const Navbar = ({
     open,
@@ -17,11 +32,11 @@ const Navbar = ({
 }) => {
     const dispatch = useDispatch();
     const type = useSelector(getType);
+
     return (
-        <AppBar position="static">
-            <Grid container sx={{alignItems: "center"}}>
-                <Grid item md={1}></Grid>
-                <Grid item md={1}>
+        <AppBar position="static" color="primary">
+            <StyledGridContainer container>
+                <Grid item sm={2} md={2} xl={2}>
                     <StyledLink to="/">
                         <Typography
                             variant="h6"
@@ -33,60 +48,72 @@ const Navbar = ({
                         </Typography>
                     </StyledLink>
                 </Grid>
-                <Grid item md={1}>
-                    <Button variant="contained" onClick={handleClick}>
-                        <FormattedMessage id="menu" defaultMessage="Menu" />
-                    </Button>
-                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                        <MenuItem
-                            onClick={changeMoviesType}
-                            disabled={type === "Top 250 Movies"}>
-                            <StyledNavLink to="/">
-                                <FormattedMessage
-                                    id="topMovies"
-                                    defaultMessage="Top 250 Movies"
-                                />
-                            </StyledNavLink>
-                        </MenuItem>
-                        <MenuItem
-                            onClick={changeMoviesType}
-                            disabled={type === "Top 250 Shows"}>
-                            <StyledNavLink to="/">
-                                <FormattedMessage
-                                    id="topShows"
-                                    defaultMessage="Top 250 Shows"
-                                />
-                            </StyledNavLink>
-                        </MenuItem>
-                        <MenuItem
-                            onClick={changeMoviesType}
-                            disabled={type === "Most Popular Movies"}>
-                            <StyledNavLink to="/">
-                                <FormattedMessage
-                                    id="popularMovies"
-                                    defaultMessage="Most Popular Movies"
-                                />
-                            </StyledNavLink>
-                        </MenuItem>
-                        <MenuItem
-                            onClick={changeMoviesType}
-                            disabled={type === "Most Popular Shows"}>
-                            <StyledNavLink to="/">
-                                <FormattedMessage
-                                    id="popularShows"
-                                    defaultMessage="Most Popular Shows"
-                                />
-                            </StyledNavLink>
-                        </MenuItem>
-                    </Menu>
+                <Grid item sm={8} md={8} xl={8}>
+                    <StyledStack direction="row">
+                        <IconButton onClick={handleClick}>
+                            <StyledMenuIcon color="primary" />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Top 250 Movies"}>
+                                <StyledNavLink to="/">
+                                    <FormattedMessage
+                                        id="topMovies"
+                                        defaultMessage="Top 250 Movies"
+                                    />
+                                </StyledNavLink>
+                            </MenuItem>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Top 250 Shows"}>
+                                <StyledNavLink to="/">
+                                    <FormattedMessage
+                                        id="topShows"
+                                        defaultMessage="Top 250 Shows"
+                                    />
+                                </StyledNavLink>
+                            </MenuItem>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Most Popular Movies"}>
+                                <StyledNavLink to="/">
+                                    <FormattedMessage
+                                        id="popularMovies"
+                                        defaultMessage="Most Popular Movies"
+                                    />
+                                </StyledNavLink>
+                            </MenuItem>
+                            <MenuItem
+                                onClick={changeMoviesType}
+                                disabled={type === "Most Popular Shows"}>
+                                <StyledNavLink to="/">
+                                    <FormattedMessage
+                                        id="popularShows"
+                                        defaultMessage="Most Popular Shows"
+                                    />
+                                </StyledNavLink>
+                            </MenuItem>
+                        </Menu>
+                        <SearchBarContainer />
+                    </StyledStack>
                 </Grid>
-                <Grid item md={7}>
-                    <SearchBarContainer />
-                </Grid>
-                <Grid item md={1}>
+                <Grid item sm={1} md={1} xl={1}>
                     <LanguagePickerContainer />
                 </Grid>
-            </Grid>
+            </StyledGridContainer>
+            <StyledGridContainerMobile container>
+                <StyledStack direction="row">
+                    <MobileDrawerContainer
+                        changeMoviesType={changeMoviesType}
+                    />
+                    <SearchBarContainer />
+                    <LanguagePickerContainer />
+                </StyledStack>
+            </StyledGridContainerMobile>
         </AppBar>
     );
 };

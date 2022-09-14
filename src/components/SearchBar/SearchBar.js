@@ -1,21 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {MenuItem, Select} from "@mui/material";
-import {StyledSearch} from "./styles";
+import {MenuItem} from "@mui/material";
+import {StyledSearch, StyledSelect} from "./styles";
 import {FormattedMessage, useIntl} from "react-intl";
 
 const SearchBar = ({onChangeType, onSearch, searchTerm, setSearchTerm}) => {
     const intl = useIntl();
+
     return (
         <>
-            <Select defaultValue="Titles" onChange={(e) => onChangeType(e)}>
+            <StyledSelect
+                variant="outlined"
+                defaultValue="Titles"
+                onChange={(e) => onChangeType(e)}>
                 <MenuItem value={"Titles"}>
                     <FormattedMessage id="titles" defaultMessage="Titles" />
                 </MenuItem>
                 <MenuItem value={"Celebs"}>
                     <FormattedMessage id="celebs" defaultMessage="Celebs" />
                 </MenuItem>
-            </Select>
+            </StyledSelect>
             <StyledSearch
                 placeholder={intl.formatMessage({
                     id: "search",

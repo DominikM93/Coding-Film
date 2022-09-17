@@ -41,7 +41,7 @@ const Navbar = ({
                         <Typography
                             variant="h6"
                             onClick={() => {
-                                if (type !== "In Theaters")
+                                if (type !== "theaters")
                                     dispatch(fetchInTheaters());
                             }}>
                             Coding Film
@@ -58,7 +58,7 @@ const Navbar = ({
                             open={open}
                             onClose={handleClose}>
                             <MenuItem
-                                onClick={changeMoviesType}
+                                onClick={() => changeMoviesType(2)}
                                 disabled={type === "Top 250 Movies"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
@@ -68,7 +68,7 @@ const Navbar = ({
                                 </StyledNavLink>
                             </MenuItem>
                             <MenuItem
-                                onClick={changeMoviesType}
+                                onClick={() => changeMoviesType(3)}
                                 disabled={type === "Top 250 Shows"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
@@ -78,7 +78,7 @@ const Navbar = ({
                                 </StyledNavLink>
                             </MenuItem>
                             <MenuItem
-                                onClick={changeMoviesType}
+                                onClick={() => changeMoviesType(4)}
                                 disabled={type === "Most Popular Movies"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
@@ -88,7 +88,7 @@ const Navbar = ({
                                 </StyledNavLink>
                             </MenuItem>
                             <MenuItem
-                                onClick={changeMoviesType}
+                                onClick={() => changeMoviesType(5)}
                                 disabled={type === "Most Popular Shows"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage

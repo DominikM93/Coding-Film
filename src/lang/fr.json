@@ -6,6 +6,7 @@
     "topShows": "Top 250 des émissions",
     "popularMovies": "Films les plus populaires",
     "popularShows": "Émissions les plus populaires",
+    "theaters": "Dans les théâtres",
     "search": "Chercher",
     "language": "Langages",
     "english": "Anglais",
@@ -20,5 +21,6 @@
     "dod": "Date de décès: ",
     "height": "Hauteur: ",
     "knownFor": "Connu pour: ",
-    "summary": "Sommaire: "
+    "summary": "Sommaire: ",
+    "rating": "Classement IMDb: "
 }

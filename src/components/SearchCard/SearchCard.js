@@ -7,8 +7,12 @@ const SearchCard = ({data, type}) => (
     <StyledLink to={`/${type}/${data.id}`}>
         <StyledPaper elevation={2}>
             <StyledImg src={data.image} alt={data.title} />
-            <Typography variant="h6"> {data.title} </Typography>
-            <Typography variant="h6"> {`${data.description}`} </Typography>
+            <Typography noWrap variant="h6">
+                {data.title}
+            </Typography>
+            <Typography noWrap variant="h6">
+                {`${data.description}`}
+            </Typography>
         </StyledPaper>
     </StyledLink>
 );

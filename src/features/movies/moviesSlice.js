@@ -12,7 +12,7 @@ export const fetchInTheaters = createAsyncThunk(
         ).then((res) => res.json());
 
         dispatch(setMovies(data.items));
-        return "In Theaters";
+        return "theaters";
     }
 );
 
@@ -38,30 +38,30 @@ export const fetchByType = createAsyncThunk(
     async (type, {dispatch}) => {
         let fullType = "none";
 
-        if (type === "Top 250 Movies") {
+        if (type === 2) {
             const data = await fetch(
                 `https://imdb-api.com/en/API/Top250Movies/${process.env.REACT_APP_APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
-            fullType = "Top 250 Movies";
-        } else if (type === "Top 250 Shows") {
+            fullType = "topMovies";
+        } else if (type === 3) {
             const data = await fetch(
                 `https://imdb-api.com/en/API/Top250TVs/${process.env.REACT_APP_APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
-            fullType = "Top 250 Shows";
-        } else if (type === "Most Popular Movies") {
+            fullType = "topShows";
+        } else if (type === 4) {
             const data = await fetch(
                 `https://imdb-api.com/en/API/MostPopularMovies/${process.env.REACT_APP_APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
-            fullType = "Most Popular Movies";
-        } else if (type === "Most Popular Shows") {
+            fullType = "popularMovies";
+        } else if (type === 5) {
             const data = await fetch(
                 `https://imdb-api.com/en/API/MostPopularTVs/${process.env.REACT_APP_APIKey}`
             ).then((res) => res.json());
             dispatch(setMovies(data.items));
-            fullType = "Most Popular Shows";
+            fullType = "popularShows";
         }
 
         return fullType;
@@ -76,6 +76,7 @@ export const fetchSearchTitle = createAsyncThunk(
         ).then((res) => res.json());
 
         dispatch(setMovies(data.results));
+        return "Search";
     }
 );
 
@@ -119,8 +120,9 @@ const moviesSlice = createSlice({
         [fetchSearchTitle.pending]: (state) => {
             state.loading = true;
         },
-        [fetchSearchTitle.fulfilled]: (state) => {
+        [fetchSearchTitle.fulfilled]: (state, {payload}) => {
             state.loading = false;
+            state.type = payload;
         },
 
         [fetchMovieById.pending]: (state) => {

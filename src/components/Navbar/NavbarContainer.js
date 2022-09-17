@@ -15,9 +15,7 @@ function NavbarContainer() {
         setAnchorEl(null);
     };
 
-    const changeMoviesType = (e) => {
-        const type = e.target.textContent;
-
+    const changeMoviesType = (type) => {
         dispatch(fetchByType(type));
         setAnchorEl(null);
     };

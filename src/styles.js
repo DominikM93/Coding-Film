@@ -7,10 +7,8 @@ export const StyledBoxContainer = styled(Box)(() => ({
 }));
 
 export const StyledBoxWrap = styled(Box)(() => ({
-    paddingTop: "20px",
     paddingBottom: "5rem",
-    backgroundColor: "white",
-    width: "80%",
+    width: "95%",
     margin: "0 auto",
 }));
 

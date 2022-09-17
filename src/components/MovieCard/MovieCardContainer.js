@@ -11,7 +11,18 @@ const MovieCardContainer = ({movie}) => {
         dispatch(fetchMovieById({id, allIds}));
     };
 
-    return <MovieCard movie={movie} handleOnClick={handleOnClick} />;
+    const fixTitle = (m) => {
+        const fullTitle = m.fullTitle.replace("(I)", "").replace("(II)", "");
+        const title = m.title.replace("(I)", "").replace("(II)", "");
+
+        const newM = {...m, fullTitle: fullTitle, title: title};
+
+        return newM;
+    };
+
+    const newMovie = fixTitle(movie);
+
+    return <MovieCard movie={newMovie} handleOnClick={handleOnClick} />;
 };
 
 MovieCardContainer.propTypes = {

@@ -20,7 +20,7 @@ export const fetchMovieById = createAsyncThunk(
     "movies/fetchMovieById",
     async ({id, allIds}, {dispatch}) => {
         const data = await fetch(
-            `https://imdb-api.com/en/API/Title/${process.env.REACT_APP_APIKey}/${id}/Images,Trailer`
+            `https://imdb-api.com/en/API/Title/${process.env.REACT_APP_APIKey}/${id}/Images,Wikipedia`
         ).then((res) => res.json());
 
         const newMovieInfo = {...data, loading: false};

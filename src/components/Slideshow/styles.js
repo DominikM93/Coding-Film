@@ -1,10 +1,14 @@
 import {Box, IconButton, styled} from "@mui/material";
 
-export const StyledSlideWrapper = styled(Box)({
+export const StyledSlideWrapper = styled(Box)(({theme}) => ({
     position: "relative",
     width: " 450px",
     height: "400px",
-});
+    [theme.breakpoints.only("xs")]: {
+        width: " 320px",
+        height: "270px",
+    },
+}));
 
 export const StyledImageBox = styled(Box)({
     position: "relative",

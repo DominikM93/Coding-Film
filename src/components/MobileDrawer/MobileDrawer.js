@@ -33,7 +33,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                     Coding Film
                 </StyledTypography>
                 <StyledMenuItem
-                    onClick={changeMoviesType}
+                    onClick={() => changeMoviesType(2)}
                     disabled={type === "Top 250 Movies"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
@@ -43,7 +43,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                     </StyledNavLink>
                 </StyledMenuItem>
                 <StyledMenuItem
-                    onClick={changeMoviesType}
+                    onClick={() => changeMoviesType(3)}
                     disabled={type === "Top 250 Shows"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
@@ -53,7 +53,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                     </StyledNavLink>
                 </StyledMenuItem>
                 <StyledMenuItem
-                    onClick={changeMoviesType}
+                    onClick={() => changeMoviesType(4)}
                     disabled={type === "Most Popular Movies"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
@@ -63,7 +63,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                     </StyledNavLink>
                 </StyledMenuItem>
                 <StyledMenuItem
-                    onClick={changeMoviesType}
+                    onClick={() => changeMoviesType(5)}
                     disabled={type === "Most Popular Shows"}>
                     <StyledNavLink to="/">
                         <FormattedMessage

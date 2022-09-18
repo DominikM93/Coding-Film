@@ -11,8 +11,7 @@ const MobileDrawerContainer = () => {
         setMobileOpen(open);
     };
 
-    const changeMoviesType = (e) => {
-        const type = e.target.textContent;
+    const changeMoviesType = (type) => {
         dispatch(fetchByType(type));
         setMobileOpen(false);
     };

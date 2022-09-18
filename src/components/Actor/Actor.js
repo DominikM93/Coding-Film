@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Box, Stack, Typography} from "@mui/material";
-import {StyledLink} from "./styles";
+import {Box} from "@mui/material";
+import {
+    StyledLink,
+    StyledTypographyName,
+    StyledTypographyBody,
+    StyledStack,
+    StyledImg,
+    StyledPaper,
+} from "./styles";
 import {moviesSelectors} from "../../features/movies/moviesSlice";
 import {useSelector} from "react-redux";
 import {FormattedMessage} from "react-intl";
@@ -9,22 +16,22 @@ import {FormattedMessage} from "react-intl";
 const Actor = ({actor, handleOnClick}) => {
     const allIds = useSelector(moviesSelectors.selectIds);
     return (
-        <Box>
-            <Stack direction="row">
-                <Stack>
-                    <Typography variant="h4">{actor.name}</Typography>
-                    <Typography variant="h6">
+        <StyledPaper>
+            <StyledStack>
+                <Box>
+                    <StyledTypographyName>{actor.name}</StyledTypographyName>
+                    <StyledTypographyBody>
                         <FormattedMessage id="roles" defaultMessage="Roles: " />
                         {actor.role}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         <FormattedMessage
                             id="dob"
                             defaultMessage=" Date of Birth:"
                         />
                         {actor.birthDate}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         {actor.deathDate !== null ? (
                             <>
                                 <FormattedMessage
@@ -36,29 +43,29 @@ const Actor = ({actor, handleOnClick}) => {
                         ) : (
                             ""
                         )}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         <FormattedMessage
                             id="awards"
                             defaultMessage="Awards: "
                         />
                         {actor.awards}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         <FormattedMessage
                             id="summary"
                             defaultMessage="Summary: "
                         />
                         {actor.summary}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         <FormattedMessage
                             id="height"
                             defaultMessage="Height: "
                         />
                         {actor.height}
-                    </Typography>
-                    <Typography variant="h6">
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
                         <FormattedMessage
                             id="knownFor"
                             defaultMessage="Known For: "
@@ -74,17 +81,12 @@ const Actor = ({actor, handleOnClick}) => {
                                     : title}
                             </StyledLink>
                         ))}
-                    </Typography>
-                </Stack>
-                <Stack>
-                    <img
-                        style={{height: "300px"}}
-                        src={actor.image}
-                        alt={actor.name}
-                    />
-                </Stack>
-            </Stack>
-        </Box>
+                    </StyledTypographyBody>
+                </Box>
+
+                <StyledImg src={actor.image} alt={actor.name} />
+            </StyledStack>
+        </StyledPaper>
     );
 };
 

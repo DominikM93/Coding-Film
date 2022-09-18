@@ -4,7 +4,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import MovieListingsContainer from "./components/MovieListings/MovieListingsContainer";
 import MovieContainer from "./components/Movie/MovieContainer";
 import ActorContainer from "./components/Actor/ActorContainer";
-import {StyledBoxContainer, StyledBoxWrap, StyledH5} from "./styles";
+import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
 import SearchListingsContainer from "./components/SearchListings/SearchListingsContainer";
 import {IntlProvider} from "react-intl";
@@ -28,7 +28,6 @@ const App = () => {
         <IntlProvider locale={locale} messages={messages}>
             <ThemeProvider theme={theme}>
                 <StyledBoxContainer>
-                    <StyledH5>window size</StyledH5>
                     <NavbarContainer />
                     <StyledBoxWrap>
                         <Routes>

@@ -23,9 +23,13 @@ const MovieContainer = () => {
     let content = "Loading...";
 
     if (!loading) {
-        if (movie.loading !== undefined) {
-            actors = movie.actorList.slice(0, 4);
-            content = <Movie movie={movie} actors={actors} />;
+        if (movie.errorMessage === null) {
+            if (movie.loading !== undefined) {
+                actors = movie.actorList.slice(0, 4);
+                content = <Movie movie={movie} actors={actors} />;
+            }
+        } else {
+            content = `Error Message: ${movie.errorMessage}`;
         }
     }
 

@@ -6,6 +6,10 @@ export const StyledMenuIcon = styled(MenuIcon)({
     color: "white",
 });
 
+export const StyledLink = styled(Link)({
+    textDecoration: "none",
+});
+
 export const StyledNavLink = styled(Link)(() => ({
     textDecoration: "none",
     color: "white",

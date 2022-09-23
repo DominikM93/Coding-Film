@@ -5,14 +5,7 @@ import {Grade} from "@mui/icons-material";
 import {StyledLink} from "./styles";
 
 const MovieList = ({movie}) => (
-    <Grid
-        container
-        direction="row"
-        sx={{
-            alignItems: "center",
-            borderBottom: "1px solid black",
-            padding: "5px 20px",
-        }}>
+    <Grid container direction="row">
         <Grid item md={2}>
             <Typography variant="h6">{`${movie.rank} ${
                 movie.rankUpDown === undefined ? "" : `(${movie.rankUpDown})`

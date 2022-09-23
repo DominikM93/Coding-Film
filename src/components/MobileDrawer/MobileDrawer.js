@@ -5,6 +5,7 @@ import {
     StyledNavLink,
     StyledMenuItem,
     StyledTypography,
+    StyledLink,
 } from "./styles";
 import PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
@@ -24,14 +25,18 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                 anchor={"left"}
                 open={mobileOpen}
                 onClose={() => toggleDrawer(false)}>
-                <StyledTypography
-                    variant="h6"
-                    onClick={() => {
-                        if (type !== "In Theaters") dispatch(fetchInTheaters());
-                        toggleDrawer(false);
-                    }}>
-                    Coding Film
-                </StyledTypography>
+                <StyledLink to="/">
+                    <StyledTypography
+                        variant="h6"
+                        onClick={() => {
+                            if (type !== "theaters") {
+                                dispatch(fetchInTheaters());
+                                toggleDrawer(false);
+                            }
+                        }}>
+                        Coding Film
+                    </StyledTypography>
+                </StyledLink>
                 <StyledMenuItem
                     onClick={() => changeMoviesType(2)}
                     disabled={type === "Top 250 Movies"}>

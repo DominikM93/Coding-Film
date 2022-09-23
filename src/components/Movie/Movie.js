@@ -38,7 +38,9 @@ const Movie = ({movie, actors}) => {
                 </Stack>
                 <Box>
                     <StyledTypographyPlot>
-                        {movie.wikipedia.plotShort.plainText}
+                        {movie.wikipedia.plotShort.plainText === ""
+                            ? movie.plot
+                            : movie.wikipedia.plotShort.plainText}
                     </StyledTypographyPlot>
                 </Box>
 

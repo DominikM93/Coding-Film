@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import {BrowserRouter} from "react-router-dom";
 
 describe("<Navbar/>", () => {
-    it("Navbar text renders", () => {
+    /* it("Navbar text renders", () => {
         render(
             <BrowserRouter>
                 <Navbar />
@@ -42,5 +42,5 @@ describe("<Navbar/>", () => {
         });
 
         expect(searchElement.value).toBe("");
-    });
+    }); */
 });

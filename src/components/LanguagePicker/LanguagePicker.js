@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
 import LanguageIcon from "@mui/icons-material/Language";
 import {StyledIconButton} from "./styles";
-import {useSelector} from "react-redux";
-import {getInfo} from "../../features/language/languageSlice";
+import {useAppSelector} from "../../utils/hooks";
+import {getInfo} from "../../features/selectors/languagesSelectors";
 
 const LanguagePicker = ({
     open,
@@ -14,11 +14,14 @@ const LanguagePicker = ({
     changeLocale,
     anchorEl,
 }) => {
-    const {locale} = useSelector(getInfo);
+    const {locale} = useAppSelector(getInfo);
 
     return (
         <>
-            <StyledIconButton variant="contained" onClick={handleClick}>
+            <StyledIconButton
+                variant="contained"
+                onClick={handleClick}
+                aria-label="language button">
                 <LanguageIcon />
             </StyledIconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

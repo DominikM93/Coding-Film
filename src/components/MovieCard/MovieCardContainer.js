@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MovieCard from "./MovieCard";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../utils/hooks";
 import {fetchMovieById} from "../../features/movies/moviesSlice";
 
 const MovieCardContainer = ({movie}) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleOnClick = (id, allIds) => {
         dispatch(fetchMovieById({id, allIds}));

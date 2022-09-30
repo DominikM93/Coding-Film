@@ -6,14 +6,14 @@ import MovieContainer from "./components/Movie/MovieContainer";
 import ActorContainer from "./components/Actor/ActorContainer";
 import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
-import SearchListingsContainer from "./components/SearchListings/SearchListingsContainer";
+import SearchListings from "./components/SearchListings/SearchListings";
 import {IntlProvider} from "react-intl";
-import {useSelector} from "react-redux";
-import {getInfo} from "./features/language/languageSlice";
+import {useAppSelector} from "./utils/hooks";
+import {getInfo} from "./features/selectors/languagesSelectors";
 import {createTheme, ThemeProvider} from "@mui/material";
 
 const App = () => {
-    const {locale, messages} = useSelector(getInfo);
+    const {locale, messages} = useAppSelector(getInfo);
 
     const theme = createTheme({
         palette: {
@@ -45,7 +45,7 @@ const App = () => {
                             />
                             <Route
                                 path="/search/:type"
-                                element={<SearchListingsContainer />}
+                                element={<SearchListings />}
                             />
                         </Routes>
                     </StyledBoxWrap>

@@ -1,39 +1,44 @@
 import React, {useEffect} from "react";
 import Movie from "./Movie";
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useAppDispatch, useAppSelector} from "../../utils/hooks";
+import {fetchMovieById} from "../../features/movies/moviesSlice";
 import {
-    fetchMovieById,
+    getMoviesData,
     moviesSelectors,
-    getLoadingMovies,
-} from "../../features/movies/moviesSlice";
+} from "../../features/selectors/moviesSelectors";
 
 const MovieContainer = () => {
     const {id} = useParams();
-    const dispatch = useDispatch();
-    const loading = useSelector(getLoadingMovies);
-    const allIds = useSelector(moviesSelectors.selectIds);
+    const dispatch = useAppDispatch();
+    const moviesData = useAppSelector(getMoviesData);
+    const allIds = useAppSelector(moviesSelectors.selectIds);
 
     useEffect(() => {
         dispatch(fetchMovieById({id, allIds}));
     }, [dispatch]);
 
-    const movie = useSelector((state) => moviesSelectors.selectById(state, id));
+    const movie = useAppSelector((state) =>
+        moviesSelectors.selectById(state, id)
+    );
     let actors;
-    let content = "Loading...";
 
-    if (!loading) {
+    if (!moviesData.loading) {
         if (movie.errorMessage === null) {
             if (movie.loading !== undefined) {
                 actors = movie.actorList.slice(0, 4);
-                content = <Movie movie={movie} actors={actors} />;
             }
-        } else {
-            content = `Error Message: ${movie.errorMessage}`;
         }
     }
 
-    return <>{content}</>;
+    return (
+        <Movie
+            movie={movie}
+            actors={actors}
+            loading={movie?.loading}
+            error={movie?.errorMessage}
+        />
+    );
 };
 
 export default MovieContainer;

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import MobileDrawer from "./MobileDrawer";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../utils/hooks";
 import {fetchByType} from "../../features/movies/moviesSlice";
 
 const MobileDrawerContainer = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const toggleDrawer = (open) => {
         setMobileOpen(open);

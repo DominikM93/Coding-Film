@@ -4,20 +4,27 @@ import {Grid} from "@mui/material";
 import MovieCardContainer from "../MovieCard/MovieCardContainer";
 import {StyledPaper, StyledTypography} from "./styles";
 import {FormattedMessage} from "react-intl";
+import Loading from "../Loading/Loading";
 
-const MovieListings = ({movies, type}) => {
+const MovieListings = ({movies, type, loading}) => {
     return (
         <>
-            <StyledPaper elevation={3}>
-                <StyledTypography>
-                    <FormattedMessage id={type} />
-                </StyledTypography>
-            </StyledPaper>
-            <Grid container justifyContent="space-evenly">
-                {movies.map((movie) => (
-                    <MovieCardContainer key={movie.id} movie={movie} />
-                ))}
-            </Grid>
+            {!loading ? (
+                <>
+                    <StyledPaper elevation={3}>
+                        <StyledTypography>
+                            <FormattedMessage id={type} />
+                        </StyledTypography>
+                    </StyledPaper>
+                    <Grid container justifyContent="space-evenly">
+                        {movies.map((movie) => (
+                            <MovieCardContainer key={movie.id} movie={movie} />
+                        ))}
+                    </Grid>
+                </>
+            ) : (
+                <Loading />
+            )}
         </>
     );
 };
@@ -25,6 +32,7 @@ const MovieListings = ({movies, type}) => {
 MovieListings.propTypes = {
     movies: PropTypes.array,
     type: PropTypes.string,
+    loading: PropTypes.bool,
 };
 
 export default MovieListings;

@@ -20,12 +20,11 @@ const actorSlice = createSlice({
             state.loading = true;
         },
         [fetchActorById.fulfilled]: (state, {payload}) => {
+            console.log(payload);
             state.loading = false;
             state.actor = payload;
         },
     },
 });
 
-export const getActor = (state) => state.actor.actor;
-export const getActorLoading = (state) => state.actor.loading;
 export default actorSlice.reducer;

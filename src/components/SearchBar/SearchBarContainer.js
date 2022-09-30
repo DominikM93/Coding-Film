@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import SearchBar from "./SearchBar";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../utils/hooks";
 import {fetchSearchName} from "../../features/actors/actorsSlice";
 import {fetchSearchTitle} from "../../features/movies/moviesSlice";
 import {useNavigate} from "react-router-dom";
@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 const SearchBarContainer = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchType, setSearchType] = useState("Titles");
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const onSearch = (e) => {
@@ -16,10 +16,10 @@ const SearchBarContainer = () => {
             if (searchTerm !== "") {
                 if (searchType === "Celebs") {
                     dispatch(fetchSearchName(searchTerm));
-                    navigate("/search/celebs");
+                    navigate("/search/actor");
                 } else if (searchType === "Titles") {
                     dispatch(fetchSearchTitle(searchTerm));
-                    navigate("/search/titles");
+                    navigate("/search/movie");
                 }
                 setSearchTerm("");
             }

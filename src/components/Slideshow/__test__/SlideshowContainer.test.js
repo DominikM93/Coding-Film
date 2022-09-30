@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SlideshowContainer from "../SlideshowContainer";
-import {slideshowImages} from "../../../testData/testData";
+import {slideshowImages} from "../../../tests/data/testData";
 
 describe("SlideshowContainer", () => {
     it("Click right arrow", async () => {

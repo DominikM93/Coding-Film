@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../utils/hooks";
 import {fetchByType} from "../../features/movies/moviesSlice";
 function NavbarContainer() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

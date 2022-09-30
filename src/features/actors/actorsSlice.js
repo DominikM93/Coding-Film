@@ -33,9 +33,6 @@ const actorsSlice = createSlice({
     },
 });
 
-export const actorsSelectors = actorsAdapter.getSelectors(
-    (state) => state.actors
-);
-export const getLoading = (state) => state.actors.loading;
+export const actorsAdapterSelector = actorsAdapter;
 export const {setActors} = actorsSlice.actions;
 export default actorsSlice.reducer;

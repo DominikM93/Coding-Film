@@ -15,13 +15,14 @@ import {
     StyledGridContainer,
     StyledGridContainerMobile,
 } from "./styles";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchInTheaters, getType} from "../../features/movies/moviesSlice";
+import {useAppDispatch, useAppSelector} from "../../utils/hooks";
+import {fetchInTheaters} from "../../features/movies/moviesSlice";
 import PropTypes from "prop-types";
 import SearchBarContainer from "../SearchBar/SearchBarContainer";
 import {FormattedMessage} from "react-intl";
 import LanguagePickerContainer from "../LanguagePicker/LanguagePickerContainer";
 import MobileDrawerContainer from "../MobileDrawer/MobileDrawerContainer";
+import {getMoviesData} from "../../features/selectors/moviesSelectors";
 
 const Navbar = ({
     open,
@@ -30,8 +31,8 @@ const Navbar = ({
     anchorEl,
     changeMoviesType,
 }) => {
-    const dispatch = useDispatch();
-    const type = useSelector(getType);
+    const dispatch = useAppDispatch();
+    const moviesData = useAppSelector(getMoviesData);
 
     return (
         <AppBar position="static" color="primary">
@@ -41,7 +42,7 @@ const Navbar = ({
                         <Typography
                             variant="h6"
                             onClick={() => {
-                                if (type !== "theaters")
+                                if (moviesData.type !== "theaters")
                                     dispatch(fetchInTheaters());
                             }}>
                             Coding Film
@@ -59,7 +60,7 @@ const Navbar = ({
                             onClose={handleClose}>
                             <MenuItem
                                 onClick={() => changeMoviesType(2)}
-                                disabled={type === "Top 250 Movies"}>
+                                disabled={moviesData.type === "Top 250 Movies"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
                                         id="topMovies"
@@ -69,7 +70,7 @@ const Navbar = ({
                             </MenuItem>
                             <MenuItem
                                 onClick={() => changeMoviesType(3)}
-                                disabled={type === "Top 250 Shows"}>
+                                disabled={moviesData.type === "Top 250 Shows"}>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
                                         id="topShows"
@@ -79,7 +80,9 @@ const Navbar = ({
                             </MenuItem>
                             <MenuItem
                                 onClick={() => changeMoviesType(4)}
-                                disabled={type === "Most Popular Movies"}>
+                                disabled={
+                                    moviesData.type === "Most Popular Movies"
+                                }>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
                                         id="popularMovies"
@@ -89,7 +92,9 @@ const Navbar = ({
                             </MenuItem>
                             <MenuItem
                                 onClick={() => changeMoviesType(5)}
-                                disabled={type === "Most Popular Shows"}>
+                                disabled={
+                                    moviesData.type === "Most Popular Shows"
+                                }>
                                 <StyledNavLink to="/">
                                     <FormattedMessage
                                         id="popularShows"

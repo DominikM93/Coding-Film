@@ -134,11 +134,6 @@ const moviesSlice = createSlice({
     },
 });
 
-export const getLoadingMovies = (state) => state.movies.loading;
-export const getType = (state) => state.movies.type;
-
 export const {setMovies, updateMovie, addMovie} = moviesSlice.actions;
-export const moviesSelectors = moviesAdapter.getSelectors(
-    (state) => state.movies
-);
+export const moviesAdapterSelector = moviesAdapter;
 export default moviesSlice.reducer;

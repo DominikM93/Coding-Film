@@ -1,43 +1,27 @@
 import React, {useEffect} from "react";
 import MovieListings from "./MovieListings";
+import {fetchInTheaters} from "../../features/movies/moviesSlice";
 import {
-    moviesSelectors,
-    getLoadingMovies,
-    getType,
-    fetchInTheaters,
-} from "../../features/movies/moviesSlice";
-import {useDispatch, useSelector} from "react-redux";
+    getMoviesData,
+    getDenormlizeMovies,
+} from "../../features/selectors/moviesSelectors";
+
+import {useAppDispatch, useAppSelector} from "../../utils/hooks";
 
 const MovieListingsContainer = () => {
-    const dispatch = useDispatch();
-
-    const allIds = useSelector(moviesSelectors.selectIds);
-    const allEntities = useSelector(moviesSelectors.selectEntities);
-    const loading = useSelector(getLoadingMovies);
-    const type = useSelector(getType);
-
-    const denormlizeData = (ids, entities) => {
-        if (ids !== undefined) {
-            const data = ids.map((id) => entities[id]);
-            return data;
-        }
-    };
+    const dispatch = useAppDispatch();
+    const {ids, loading, type} = useAppSelector(getMoviesData);
+    const movies = useAppSelector(getDenormlizeMovies);
 
     useEffect(() => {
-        if (allIds.length === 0) {
+        if (ids.length === 0) {
             dispatch(fetchInTheaters());
         }
     }, []);
 
-    const movies = denormlizeData(allIds, allEntities);
-
     return (
         <>
-            {loading ? (
-                "Loading..."
-            ) : (
-                <MovieListings movies={movies} type={type} />
-            )}
+            <MovieListings movies={movies} type={type} loading={loading} />
         </>
     );
 };

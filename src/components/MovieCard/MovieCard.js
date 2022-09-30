@@ -10,12 +10,12 @@ import {
     StyledTypographyUp,
     StyledTypographyDown,
 } from "./styles";
-import {useSelector} from "react-redux";
-import {moviesSelectors} from "../../features/movies/moviesSlice";
+import {useAppSelector} from "../../utils/hooks";
+import {moviesSelectors} from "../../features/selectors/moviesSelectors";
 import {FormattedMessage} from "react-intl";
 
 const MovieCard = ({movie, handleOnClick}) => {
-    const allIds = useSelector(moviesSelectors.selectIds);
+    const allIds = useAppSelector(moviesSelectors.selectIds);
     return (
         <StyledLink
             to={`/movie/${movie.id}`}

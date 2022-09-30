@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import LanguagePicker from "./LanguagePicker";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../utils/hooks";
 import {changeLang} from "../../features/language/languageSlice";
 
 const LanguagePickerContainer = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

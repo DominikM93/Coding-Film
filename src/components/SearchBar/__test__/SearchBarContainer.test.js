@@ -2,26 +2,16 @@ import React from "react";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
 import SearchBarContainer from "../SearchBarContainer";
-import {IntlProvider} from "react-intl";
-import English from "../../../lang/en-US.json";
 import userEvent from "@testing-library/user-event";
-import {store} from "../../../features/store";
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
-
-const FullSearchBar = () => (
-    <Provider store={store}>
-        <BrowserRouter>
-            <IntlProvider locale="en-US" messages={English}>
-                <SearchBarContainer />
-            </IntlProvider>
-        </BrowserRouter>
-    </Provider>
-);
+import {BaseWrapper} from "../../../tests/helper";
 
 describe("SearchBarContainer", () => {
     it("Search textfiled should change when typing", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const searchElement = screen.getByRole("textbox");
 
         await userEvent.type(searchElement, "ryan");
@@ -29,7 +19,11 @@ describe("SearchBarContainer", () => {
     });
 
     it("Select menu should open when select is clicked", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const searchElement = screen.getByRole("button", {name: /titles/i});
 
         await userEvent.click(searchElement);
@@ -40,7 +34,11 @@ describe("SearchBarContainer", () => {
     });
 
     it("Select menu should close when menu item is clicked", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const selectElement = screen.getByRole("button", {name: /titles/i});
 
         await userEvent.click(selectElement);
@@ -55,7 +53,11 @@ describe("SearchBarContainer", () => {
     });
 
     it("No action taken if search is empty and pressed", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const searchElement = screen.getByRole("textbox");
 
         await userEvent.click(searchElement);
@@ -63,7 +65,11 @@ describe("SearchBarContainer", () => {
     });
 
     it("Search for a Title", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const searchElement = screen.getByRole("textbox");
         const title = "Ryan";
 
@@ -73,7 +79,11 @@ describe("SearchBarContainer", () => {
     });
 
     it("Search for a Celeb", async () => {
-        render(<FullSearchBar />);
+        render(
+            <BaseWrapper>
+                <SearchBarContainer />
+            </BaseWrapper>
+        );
         const searchElement = screen.getByRole("textbox");
         const celeb = "Jack";
         const selectElement = screen.getByRole("button", {name: /titles/i});

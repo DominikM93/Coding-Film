@@ -2,11 +2,11 @@ import React from "react";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
 import Slideshow from "../Slideshow";
-import {movies} from "../../../testData/testData";
+import {movies} from "../../../tests/data/testData";
 
 const images = movies[0].images.items;
 const activeIndex = 0;
-const moveTo = jest.fn;
+const moveTo = jest.fn();
 
 describe("Slideshow", () => {
     it("render image", () => {

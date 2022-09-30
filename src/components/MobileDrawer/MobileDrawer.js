@@ -9,16 +9,19 @@ import {
 } from "./styles";
 import PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
-import {useDispatch, useSelector} from "react-redux";
-import {getType, fetchInTheaters} from "../../features/movies/moviesSlice";
+import {useAppDispatch, useAppSelector} from "../../utils/hooks";
+import {fetchInTheaters} from "../../features/movies/moviesSlice";
+import {getMoviesData} from "../../features/selectors/moviesSelectors";
 
 const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
-    const type = useSelector(getType);
-    const dispatch = useDispatch();
+    const moviesData = useAppSelector(getMoviesData);
+    const dispatch = useAppDispatch();
 
     return (
         <>
-            <IconButton onClick={() => toggleDrawer(true)}>
+            <IconButton
+                onClick={() => toggleDrawer(true)}
+                aria-label="menu button">
                 <StyledMenuIcon />
             </IconButton>
             <Drawer
@@ -29,7 +32,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                     <StyledTypography
                         variant="h6"
                         onClick={() => {
-                            if (type !== "theaters") {
+                            if (moviesData.type !== "theaters") {
                                 dispatch(fetchInTheaters());
                                 toggleDrawer(false);
                             }
@@ -39,7 +42,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                 </StyledLink>
                 <StyledMenuItem
                     onClick={() => changeMoviesType(2)}
-                    disabled={type === "Top 250 Movies"}>
+                    disabled={moviesData.type === "Top 250 Movies"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
                             id="topMovies"
@@ -49,7 +52,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                 </StyledMenuItem>
                 <StyledMenuItem
                     onClick={() => changeMoviesType(3)}
-                    disabled={type === "Top 250 Shows"}>
+                    disabled={moviesData.type === "Top 250 Shows"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
                             id="topShows"
@@ -59,7 +62,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                 </StyledMenuItem>
                 <StyledMenuItem
                     onClick={() => changeMoviesType(4)}
-                    disabled={type === "Most Popular Movies"}>
+                    disabled={moviesData.type === "Most Popular Movies"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
                             id="popularMovies"
@@ -69,7 +72,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
                 </StyledMenuItem>
                 <StyledMenuItem
                     onClick={() => changeMoviesType(5)}
-                    disabled={type === "Most Popular Shows"}>
+                    disabled={moviesData.type === "Most Popular Shows"}>
                     <StyledNavLink to="/">
                         <FormattedMessage
                             id="popularShows"

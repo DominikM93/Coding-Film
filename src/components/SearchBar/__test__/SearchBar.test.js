@@ -5,9 +5,9 @@ import {render, screen} from "@testing-library/react";
 import {IntlProvider} from "react-intl";
 import English from "../../../lang/en-US.json";
 
-const onChangeType = jest.fn;
-const onSearch = jest.fn;
-const setSearchTerm = jest.fn;
+const onChangeType = jest.fn();
+const onSearch = jest.fn();
+const setSearchTerm = jest.fn();
 
 const FullSearchBar = () => (
     <IntlProvider locale="en-US" messages={English}>

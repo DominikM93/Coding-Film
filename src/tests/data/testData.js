@@ -1,3 +1,5 @@
+import English from "../../lang/en-US.json";
+
 export const type = "theaters";
 
 export const movies = [
@@ -8,7 +10,10 @@ export const movies = [
         releaseDate: "2012-05-04",
         runtimeStr: "2h 23min",
         plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
-        directorList: [{id: "nm0923736", name: "Joss Whedon"}],
+        directorList: [
+            {id: "nm0923736", name: "Joss Whedon"},
+            {id: "nm0923736", name: "Joss Whedon"},
+        ],
         genres: "Action, Adventure, Sci-Fi",
         writerList: [
             {id: "nm0923736", name: "Joss Whedon"},
@@ -76,7 +81,7 @@ export const movie = {
     rankUpDown: "+1",
     id: "tt10648342",
     image: "https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio0.6762_AL_.jpg",
-    title: "Thor: Love and Thunder",
+    title: "The Avengers",
     year: "2022",
 };
 
@@ -228,4 +233,185 @@ export const slideshowImages = {
             image: "https://m.media-amazon.com/images/M/MV5BMTY0MDc4OD…BanBnXkFtZTcwMjM4ODY3Nw@@._V1_Ratio1.7800_AL_.jpg",
         },
     ],
+};
+
+export const initialState = {
+    movies: {ids: [], entities: {}, loading: false, type: "theaters"},
+    actors: {ids: [], entities: {}, loading: false},
+    actor: {actor: {}, loading: false},
+    language: {
+        locale: "en-US",
+        messages: {English},
+    },
+};
+
+export const filledState = {
+    movies: {
+        ids: ["tt0800369", "tt0800370"],
+        entities: {
+            tt0800369: {
+                id: "tt0800369",
+                fullTitle: "Thor (2022)",
+                title: "Thor",
+                imDbRating: "8",
+                releaseDate: "2012-05-04",
+                runtimeStr: "2h 23min",
+                plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+                directorList: [{id: "nm0923736", name: "Joss Whedon"}],
+                genres: "Action, Adventure, Sci-Fi",
+                writerList: [
+                    {id: "nm0923736", name: "Joss Whedon"},
+                    {id: "nm0672015", name: "Zak Penn"},
+                ],
+                awards: "Nominated for 1 Oscar, 38 wins & 80 nominations total",
+                image: "https://m.media-amazon.com/images/M/MV5BMTA0NjY0Nz…eQWpwZ15BbWU3MDczODg2Nzc@._V1_Ratio1.7800_AL_.jpg",
+                images: {
+                    items: [
+                        {
+                            title: "Scarlett Johansson and Chris Hemsworth in The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BMTA0NjY0Nz…eQWpwZ15BbWU3MDczODg2Nzc@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                        {
+                            title: "Scarlett Johansson in The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BOTkxOTIwMz…BanBnXkFtZTcwMDM4ODY3Nw@@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                        {
+                            title: "The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BMTY0MDc4OD…BanBnXkFtZTcwMjM4ODY3Nw@@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                    ],
+                },
+                actorList: [
+                    {
+                        id: "nm1165110",
+                        image: "https://m.media-amazon.com/images/M/MV5BOTU2MTI0NTIyNV5BMl5BanBnXkFtZTcwMTA4Nzc3OA@@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Chris Hemsworth",
+                    },
+                    {
+                        id: "nm0000164",
+                        image: "https://m.media-amazon.com/images/M/MV5BMTg5ODk1NTc5Ml5BMl5BanBnXkFtZTYwMjAwOTI4._V1_Ratio1.0000_AL_.jpg",
+                        name: "Anthony Hopkins",
+                    },
+                    {
+                        id: "nm0000204",
+                        image: "https://m.media-amazon.com/images/M/MV5BYzU0ZGRhZWItMGJlNy00YzlkLWIzOWYtNDA2NzlhMDg3YjMwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Natalie Portman",
+                    },
+                    {
+                        id: "nm1089991",
+                        image: "https://m.media-amazon.com/images/M/MV5BNWYwODAyZjAtOTQ1My00MDY2LTg0NDQtZGFiMDRiYzY4ZmM2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Tom Hiddleston",
+                    },
+                    {
+                        id: "nm0001745",
+                        image: "https://m.media-amazon.com/images/M/MV5BMzljNGIzYjgtMTQ0MS00OWU1LTk1NWEtOWQ3ZDhmNzQ2ZDAxXkEyXkFqcGdeQXVyMDAzMDk4OQ@@._V1_Ratio1.2286_AL_.jpg",
+                        name: "Stellan Skarsgård",
+                    },
+                ],
+                wikipedia: {plotShort: {plainText: ""}},
+                errorMessage: null,
+                loading: false,
+            },
+            tt0800370: {
+                id: "tt00800370",
+                fullTitle: "The Avengers (2012)",
+                title: "The Avengers",
+                imDbRating: "8",
+                releaseDate: "2012-05-04",
+                runtimeStr: "2h 23min",
+                plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+                directorList: [
+                    {id: "nm0923736", name: "Joss Whedon"},
+                    {id: "nm0923736", name: "Joss Whedon"},
+                ],
+                genres: "Action, Adventure, Sci-Fi",
+                writerList: [
+                    {id: "nm0923736", name: "Joss Whedon"},
+                    {id: "nm0672015", name: "Zak Penn"},
+                ],
+                awards: "Nominated for 1 Oscar, 38 wins & 80 nominations total",
+                image: "https://m.media-amazon.com/images/M/MV5BMTA0NjY0Nz…eQWpwZ15BbWU3MDczODg2Nzc@._V1_Ratio1.7800_AL_.jpg",
+                images: {
+                    items: [
+                        {
+                            title: "Scarlett Johansson and Chris Hemsworth in The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BMTA0NjY0Nz…eQWpwZ15BbWU3MDczODg2Nzc@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                        {
+                            title: "Scarlett Johansson in The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BOTkxOTIwMz…BanBnXkFtZTcwMDM4ODY3Nw@@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                        {
+                            title: "The Avengers (2012)",
+                            image: "https://m.media-amazon.com/images/M/MV5BMTY0MDc4OD…BanBnXkFtZTcwMjM4ODY3Nw@@._V1_Ratio1.7800_AL_.jpg",
+                        },
+                    ],
+                },
+                actorList: [
+                    {
+                        id: "nm1165110",
+                        image: "https://m.media-amazon.com/images/M/MV5BOTU2MTI0NTIyNV5BMl5BanBnXkFtZTcwMTA4Nzc3OA@@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Chris Hemsworth",
+                    },
+                    {
+                        id: "nm0000164",
+                        image: "https://m.media-amazon.com/images/M/MV5BMTg5ODk1NTc5Ml5BMl5BanBnXkFtZTYwMjAwOTI4._V1_Ratio1.0000_AL_.jpg",
+                        name: "Anthony Hopkins",
+                    },
+                    {
+                        id: "nm0000204",
+                        image: "https://m.media-amazon.com/images/M/MV5BYzU0ZGRhZWItMGJlNy00YzlkLWIzOWYtNDA2NzlhMDg3YjMwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Natalie Portman",
+                    },
+                    {
+                        id: "nm1089991",
+                        image: "https://m.media-amazon.com/images/M/MV5BNWYwODAyZjAtOTQ1My00MDY2LTg0NDQtZGFiMDRiYzY4ZmM2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_Ratio1.0000_AL_.jpg",
+                        name: "Tom Hiddleston",
+                    },
+                    {
+                        id: "nm0001745",
+                        image: "https://m.media-amazon.com/images/M/MV5BMzljNGIzYjgtMTQ0MS00OWU1LTk1NWEtOWQ3ZDhmNzQ2ZDAxXkEyXkFqcGdeQXVyMDAzMDk4OQ@@._V1_Ratio1.2286_AL_.jpg",
+                        name: "Stellan Skarsgård",
+                    },
+                ],
+                wikipedia: {plotShort: {plainText: ""}},
+                errorMessage: null,
+                loading: false,
+            },
+        },
+        loading: false,
+        type: "popular",
+    },
+    actor: {actor: actor, loading: false},
+    actors: {
+        ids: ["nm0655585", "nm0010075", "nm0172557"],
+        entities: {
+            nm0655585: {
+                id: "nm0655585",
+                resultType: "Name",
+                image: "https://m.media-amazon.com/images/M/MV5BMjA2ODMyMDgxMl5BMl5BanBnXkFtZTcwNjAwMjA3NA@@._V1_Ratio0.7273_AL_.jpg",
+                title: "Jared Padalecki",
+                description: "(Actor, Supernatural (2005))",
+            },
+            nm0010075: {
+                id: "nm0010075",
+                resultType: "Name",
+                image: "https://m.media-amazon.com/images/M/MV5BMTcxMDk3NTgzNl5BMl5BanBnXkFtZTcwMTUzNzY3OQ@@._V1_Ratio0.7273_AL_.jpg",
+                title: "Jensen Ackles",
+                description: "(Actor, Supernatural (2005))",
+            },
+            nm0172557: {
+                id: "nm0172557",
+                resultType: "Name",
+                image: "https://m.media-amazon.com/images/M/MV5BYTNhNjQ4MGEtMWYzMi00ZTRiLWJhMTYtZTFiN2ExNmEyMTQ0XkEyXkFqcGdeQXVyNjI5MTQxNzQ@._V1_Ratio0.7273_AL_.jpg",
+                title: "Misha Collins",
+                description: "(Actor, Supernatural (2005))",
+            },
+        },
+        loading: false,
+    },
+    language: {
+        locale: "en-US",
+        messages: {English},
+    },
 };

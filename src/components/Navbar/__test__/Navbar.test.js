@@ -1,15 +1,25 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Navbar from "../Navbar";
-import {BrowserRouter} from "react-router-dom";
+import {renderWithBaseWrapper} from "../../../tests/helper";
+
+const open = false;
+const anchorEl = document.createElement("button");
+const handleClick = jest.fn();
+const handleClose = jest.fn();
+const changeMoviesType = jest.fn();
 
 describe("<Navbar/>", () => {
-    /* it("Navbar text renders", () => {
-        render(
-            <BrowserRouter>
-                <Navbar />
-            </BrowserRouter>
+    it("Navbar text renders", () => {
+        renderWithBaseWrapper(
+            <Navbar
+                open={open}
+                anchorEl={anchorEl}
+                handleClick={handleClick}
+                handleClose={handleClose}
+                changeMoviesType={changeMoviesType}
+            />
         );
         const navbarElement = screen.getByRole("heading", {
             name: /coding film/i,
@@ -19,28 +29,31 @@ describe("<Navbar/>", () => {
     });
 
     it("Search bar should render", () => {
-        render(
-            <BrowserRouter>
-                <Navbar />
-            </BrowserRouter>
+        renderWithBaseWrapper(
+            <Navbar
+                open={open}
+                anchorEl={anchorEl}
+                handleClick={handleClick}
+                handleClose={handleClose}
+                changeMoviesType={changeMoviesType}
+            />
         );
-        const searchElement = screen.getByRole("textbox", {
-            name: /search movie or show/i,
-        });
-
-        expect(searchElement).toBeInTheDocument();
+        const searchElement = screen.getAllByPlaceholderText(/search/i);
+        expect(searchElement[0]).toBeInTheDocument();
     });
 
     it("Search bar should be empty", () => {
-        render(
-            <BrowserRouter>
-                <Navbar />
-            </BrowserRouter>
+        renderWithBaseWrapper(
+            <Navbar
+                open={open}
+                anchorEl={anchorEl}
+                handleClick={handleClick}
+                handleClose={handleClose}
+                changeMoviesType={changeMoviesType}
+            />
         );
-        const searchElement = screen.getByRole("textbox", {
-            name: /search movie or show/i,
-        });
+        const searchElement = screen.getAllByPlaceholderText(/search/i);
 
-        expect(searchElement.value).toBe("");
-    }); */
+        expect(searchElement[0].value).toBe("");
+    });
 });

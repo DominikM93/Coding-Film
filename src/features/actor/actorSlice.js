@@ -20,7 +20,6 @@ const actorSlice = createSlice({
             state.loading = true;
         },
         [fetchActorById.fulfilled]: (state, {payload}) => {
-            console.log(payload);
             state.loading = false;
             state.actor = payload;
         },

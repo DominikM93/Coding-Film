@@ -1,17 +1,13 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import MovieListings from "../MovieListings";
 import {movies, type} from "../../../tests/data/testData";
-import {BaseWrapper} from "../../../tests/helper";
+import {renderWithBaseWrapper} from "../../../tests/helper";
 
 describe("MovieListings", () => {
     it("Render MovieListings", () => {
-        render(
-            <BaseWrapper>
-                <MovieListings movies={movies} type={type} />
-            </BaseWrapper>
-        );
+        renderWithBaseWrapper(<MovieListings movies={movies} type={type} />);
         const titleElement = screen.getByRole("heading", {
             name: /the avengers \(2012\)/i,
         });

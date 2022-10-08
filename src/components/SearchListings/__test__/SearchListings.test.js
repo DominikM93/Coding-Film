@@ -1,39 +1,39 @@
 import React from "react";
 import SearchListings from "../SearchListings";
 import "@testing-library/jest-dom";
-import {render, screen} from "@testing-library/react";
-import {BaseWrapper} from "../../../tests/helper";
+import {screen} from "@testing-library/react";
+import {renderWithBaseWrapperStore} from "../../../tests/helper";
+import {useParams} from "react-router-dom";
 
 jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
-    useParams: () => ({
-        type: "movie",
-    }),
+    useParams: jest.fn(),
 }));
 
 describe("SearchListings", () => {
-    /* it("Render Movies SearchListings", () => {
-        render(
-            <BaseWrapper>
-                <SearchListings />
-            </BaseWrapper>
-        );
-        const titleElement = screen.getByRole("heading", {
-            name: /saving private ryan/i,
+    beforeEach(() => {
+        useParams.mockReturnValue({
+            type: "movie",
         });
+    });
+    it("Show 2 movies in search list", () => {
+        renderWithBaseWrapperStore(<SearchListings />, global.testStore);
+        const imagesElement = screen.getAllByRole("img");
 
-        expect(titleElement).toBeInTheDocument();
-    }); */
-    /* it("Render Movies SearchListings", () => {
-        render(
-            <BaseWrapper>
-                <SearchListings dataSet={searchActorSet} type="actor" />
-            </BaseWrapper>
-        );
-        const titleElement = screen.getByRole("heading", {
-            name: /Robert Aramayo/i,
+        expect(imagesElement.length).toEqual(2);
+    });
+});
+
+describe("SearchListings", () => {
+    beforeEach(() => {
+        useParams.mockReturnValue({
+            type: "actor",
         });
+    });
+    it("Show 3 actors in search list", () => {
+        renderWithBaseWrapperStore(<SearchListings />, global.testStore);
+        const imagesElement = screen.getAllByRole("img");
 
-        expect(titleElement).toBeInTheDocument();
-    }); */
+        expect(imagesElement.length).toEqual(3);
+    });
 });

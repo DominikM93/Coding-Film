@@ -1,6 +1,8 @@
 import {actorsAdapterSelector} from "../actors/actorsSlice";
 
-export const getActorsData = (state) => state.actors;
+export const getActorsData = (state) => {
+    return state.actors;
+};
 
 export const getDenormlizeActors = ({actors: {ids, entities}}) => {
     if (ids !== undefined) {

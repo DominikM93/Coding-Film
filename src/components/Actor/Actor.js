@@ -16,6 +16,7 @@ import Loading from "../Loading/Loading";
 
 const Actor = ({actor, handleOnClick, loading}) => {
     const allIds = useAppSelector(moviesSelectors.selectIds);
+
     return (
         <>
             {!loading ? (

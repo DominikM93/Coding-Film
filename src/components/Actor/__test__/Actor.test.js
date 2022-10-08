@@ -1,18 +1,16 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import Actor from "../Actor";
 import {actor, deadActor} from "../../../tests/data/testData";
-import {BaseWrapper} from "../../../tests/helper";
+import {renderWithBaseWrapper} from "../../../tests/helper";
 
 const handleOnClick = jest.fn();
 
 describe("Actor", () => {
     it("Render actor", () => {
-        render(
-            <BaseWrapper>
-                <Actor actor={actor} handleOnClick={handleOnClick} />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <Actor actor={actor} handleOnClick={handleOnClick} />
         );
         const nameElement = screen.getByText(/chris hemsworth/i);
 
@@ -20,10 +18,8 @@ describe("Actor", () => {
     });
 
     it("Render dead actor", () => {
-        render(
-            <BaseWrapper>
-                <Actor actor={deadActor} handleOnClick={handleOnClick} />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <Actor actor={deadActor} handleOnClick={handleOnClick} />
         );
         const nameElement = screen.getByText(/sean connery/i);
 

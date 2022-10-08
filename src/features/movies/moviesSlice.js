@@ -24,7 +24,6 @@ export const fetchMovieById = createAsyncThunk(
         ).then((res) => res.json());
 
         const newMovieInfo = {...data, loading: false};
-
         if (allIds.includes(id)) {
             dispatch(updateMovie({id, changes: newMovieInfo}));
         } else {

@@ -1,26 +1,24 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import LanguagePicker from "../LanguagePicker";
-import {BaseWrapper} from "../../../tests/helper";
+import {renderWithBaseWrapper} from "../../../tests/helper";
 
 const handleClick = jest.fn();
 const handleClose = jest.fn();
 const changeLocale = jest.fn();
-const anchorEl = {};
+const anchorEl = document.createElement("button");
 
 describe("LanguagePicker", () => {
     it("Render Icon button", async () => {
-        render(
-            <BaseWrapper>
-                <LanguagePicker
-                    open={false}
-                    handleClick={handleClick}
-                    handleClose={handleClose}
-                    changeLocale={changeLocale}
-                    anchorEl={anchorEl}
-                />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <LanguagePicker
+                open={false}
+                handleClick={handleClick}
+                handleClose={handleClose}
+                changeLocale={changeLocale}
+                anchorEl={anchorEl}
+            />
         );
 
         const languageButtonElement = screen.getByRole("button", {
@@ -31,16 +29,14 @@ describe("LanguagePicker", () => {
     });
 
     it("Show menu when open is true", async () => {
-        render(
-            <BaseWrapper>
-                <LanguagePicker
-                    open={true}
-                    handleClick={handleClick}
-                    handleClose={handleClose}
-                    changeLocale={changeLocale}
-                    anchorEl={anchorEl}
-                />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <LanguagePicker
+                open={true}
+                handleClick={handleClick}
+                handleClose={handleClose}
+                changeLocale={changeLocale}
+                anchorEl={anchorEl}
+            />
         );
         const menuElement = screen.getByRole("menu");
 

@@ -51,7 +51,9 @@ const Navbar = ({
                 </Grid>
                 <Grid item sm={8} md={8} xl={8}>
                     <StyledStack direction="row">
-                        <IconButton onClick={handleClick}>
+                        <IconButton
+                            onClick={handleClick}
+                            aria-label="menu button">
                             <StyledMenuIcon color="primary" />
                         </IconButton>
                         <Menu

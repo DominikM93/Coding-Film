@@ -13,9 +13,11 @@ const ActorContainer = () => {
     const handleOnClick = (id, allIds) => {
         dispatch(fetchMovieById({id, allIds}));
     };
+
     useEffect(() => {
         dispatch(fetchActorById(id));
-    }, [dispatch]);
+    }, []);
+
     const {actor, loading} = useAppSelector(getActorData);
 
     return (

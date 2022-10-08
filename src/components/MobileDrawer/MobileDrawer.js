@@ -21,7 +21,7 @@ const MobileDrawer = ({toggleDrawer, mobileOpen, changeMoviesType}) => {
         <>
             <IconButton
                 onClick={() => toggleDrawer(true)}
-                aria-label="menu button">
+                aria-label="menu button mobile">
                 <StyledMenuIcon />
             </IconButton>
             <Drawer

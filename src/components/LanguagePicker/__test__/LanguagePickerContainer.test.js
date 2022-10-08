@@ -1,17 +1,13 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import LanguagePickerContainer from "../LanguagePickerContainer";
-import {BaseWrapper} from "../../../tests/helper";
+import {renderWithBaseWrapper} from "../../../tests/helper";
 
 describe("LanguagePicker", () => {
     it("Open menu when button is clicked", async () => {
-        render(
-            <BaseWrapper>
-                <LanguagePickerContainer />
-            </BaseWrapper>
-        );
+        renderWithBaseWrapper(<LanguagePickerContainer />);
 
         const languageButtonElement = screen.getByRole("button", {
             name: /language button/i,
@@ -25,11 +21,7 @@ describe("LanguagePicker", () => {
     });
 
     it("Click on French and close menu", async () => {
-        render(
-            <BaseWrapper>
-                <LanguagePickerContainer />
-            </BaseWrapper>
-        );
+        renderWithBaseWrapper(<LanguagePickerContainer />);
 
         const languageButtonElement = screen.getByRole("button", {
             name: /language button/i,
@@ -47,11 +39,7 @@ describe("LanguagePicker", () => {
     });
 
     it("Close menu by clicking the backdrop", async () => {
-        render(
-            <BaseWrapper>
-                <LanguagePickerContainer />
-            </BaseWrapper>
-        );
+        renderWithBaseWrapper(<LanguagePickerContainer />);
 
         const languageButtonElement = screen.getByRole("button", {
             name: /language button/i,

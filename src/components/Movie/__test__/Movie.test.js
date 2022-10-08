@@ -1,21 +1,19 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import Movie from "../Movie";
 import {movies, actors} from "../../../tests/data/testData";
-import {BaseWrapper} from "../../../tests/helper";
+import {renderWithBaseWrapper} from "../../../tests/helper";
 
 describe("Movie", () => {
     it("Render a movie", () => {
-        render(
-            <BaseWrapper>
-                <Movie
-                    movie={movies[0]}
-                    actors={actors}
-                    loading={false}
-                    error={null}
-                />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <Movie
+                movie={movies[0]}
+                actors={actors}
+                loading={false}
+                error={null}
+            />
         );
         const titleElement = screen.getByRole("heading", {
             name: /the avengers \(2012\)/i,
@@ -25,15 +23,13 @@ describe("Movie", () => {
     });
 
     it("Render a movie with an error", () => {
-        render(
-            <BaseWrapper>
-                <Movie
-                    movie={movies[0]}
-                    actors={actors}
-                    loading={false}
-                    error={"Error"}
-                />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <Movie
+                movie={movies[0]}
+                actors={actors}
+                loading={false}
+                error={"Error"}
+            />
         );
         const errorElement = screen.getByText(/error: error/i);
 
@@ -41,15 +37,13 @@ describe("Movie", () => {
     });
 
     it("Show loading when actor is not loaded", () => {
-        render(
-            <BaseWrapper>
-                <Movie
-                    movie={movies[0]}
-                    actors={undefined}
-                    loading={true}
-                    error={null}
-                />
-            </BaseWrapper>
+        renderWithBaseWrapper(
+            <Movie
+                movie={movies[0]}
+                actors={undefined}
+                loading={true}
+                error={null}
+            />
         );
         const loadingElement = screen.getByText(/loading\.\.\./i);
 

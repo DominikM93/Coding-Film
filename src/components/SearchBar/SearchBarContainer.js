@@ -14,13 +14,17 @@ const SearchBarContainer = () => {
     const onSearch = (e) => {
         if (e.charCode === 13) {
             if (searchTerm !== "") {
-                if (searchType === "Celebs") {
-                    dispatch(fetchSearchName(searchTerm));
-                    navigate("/search/actor");
-                } else if (searchType === "Titles") {
-                    dispatch(fetchSearchTitle(searchTerm));
-                    navigate("/search/movie");
+                switch (searchType) {
+                    case "Celebs":
+                        dispatch(fetchSearchName(searchTerm));
+                        navigate("/search/actor");
+                        break;
+                    case "Titles":
+                        dispatch(fetchSearchTitle(searchTerm));
+                        navigate("/search/movie");
+                        break;
                 }
+
                 setSearchTerm("");
             }
         }

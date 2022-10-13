@@ -6,7 +6,7 @@ import MovieContainer from "./components/Movie/MovieContainer";
 import ActorContainer from "./components/Actor/ActorContainer";
 import {StyledBoxContainer, StyledBoxWrap} from "./styles";
 import {Route, Routes} from "react-router-dom";
-import SearchListings from "./components/SearchListings/SearchListings";
+import SearchListingsContainer from "./components/SearchListings/SearchListingsContainer";
 import {IntlProvider} from "react-intl";
 import {useAppSelector} from "./utils/hooks";
 import {getInfo} from "./features/selectors/languagesSelectors";
@@ -45,7 +45,7 @@ const App = () => {
                             />
                             <Route
                                 path="/search/:type"
-                                element={<SearchListings />}
+                                element={<SearchListingsContainer />}
                             />
                         </Routes>
                     </StyledBoxWrap>

@@ -2,16 +2,35 @@ import React from "react";
 import SearchListings from "../SearchListings";
 import "@testing-library/jest-dom";
 import {screen} from "@testing-library/react";
-import {renderWithBaseWrapperStore} from "../../../tests/helper";
-import {useParams} from "react-router-dom";
+import {renderWithBaseWrapper} from "../../../tests/helper";
+import {movie} from "../../../tests/data/testData";
 
-jest.mock("react-router-dom", () => ({
+/* jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
     useParams: jest.fn(),
-}));
+})); */
 
 describe("SearchListings", () => {
-    beforeEach(() => {
+    it("Show loading when loading is true", () => {
+        renderWithBaseWrapper(
+            <SearchListings listData={[movie]} type="movie" loading={true} />
+        );
+        const loadingElement = screen.getByText(/loading\.\.\./i);
+
+        expect(loadingElement).toBeInTheDocument();
+    });
+
+    it("Show a movie", () => {
+        renderWithBaseWrapper(
+            <SearchListings listData={[movie]} type="movie" loading={false} />
+        );
+
+        const movieItemElement = screen.getByRole("img", {
+            name: /The Avengers/i,
+        });
+        expect(movieItemElement).toBeInTheDocument();
+    });
+    /* beforeEach(() => {
         useParams.mockReturnValue({
             type: "movie",
         });
@@ -35,5 +54,5 @@ describe("SearchListings", () => {
         const imagesElement = screen.getAllByRole("img");
 
         expect(imagesElement.length).toEqual(3);
-    });
+    }); */
 });

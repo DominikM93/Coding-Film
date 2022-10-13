@@ -7,6 +7,7 @@ import {
     renderWithBaseWrapperStore,
 } from "../../../tests/helper";
 import userEvent from "@testing-library/user-event";
+import {navbarContainerTest} from "../../../tests/data/testData";
 
 describe("MobileDrawerContainer", () => {
     it("Click the menu button to open menu", async () => {
@@ -40,6 +41,12 @@ describe("MobileDrawerContainer", () => {
     });
 
     it("Click on Top 250 movies", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(navbarContainerTest),
+            })
+        );
         renderWithBaseWrapper(<NavbarContainer />);
         const menuButtonElement = screen.getAllByRole("button", {
             name: /menu button/i,
@@ -59,6 +66,12 @@ describe("MobileDrawerContainer", () => {
     });
 
     it("Click on Top 250 shows", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(navbarContainerTest),
+            })
+        );
         renderWithBaseWrapper(<NavbarContainer />);
         const menuButtonElement = screen.getAllByRole("button", {
             name: /menu button/i,
@@ -78,6 +91,12 @@ describe("MobileDrawerContainer", () => {
     });
 
     it("Click on popular movies", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(navbarContainerTest),
+            })
+        );
         renderWithBaseWrapper(<NavbarContainer />);
         const menuButtonElement = screen.getAllByRole("button", {
             name: /menu button/i,
@@ -97,6 +116,12 @@ describe("MobileDrawerContainer", () => {
     });
 
     it("Click on popular shows", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(navbarContainerTest),
+            })
+        );
         renderWithBaseWrapper(<NavbarContainer />);
         const menuButtonElement = screen.getAllByRole("button", {
             name: /menu button/i,

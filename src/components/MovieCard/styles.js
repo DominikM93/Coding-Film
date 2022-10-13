@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 export const StyledImg = styled("img")({
     width: "200px",
     maxHeight: "250px",
+    minHeight: "250px",
 });
 
 export const StyledLink = styled(Link)({
@@ -19,6 +20,7 @@ export const StyledPaper = styled(Paper)({
     width: "200px",
     height: "fit-content",
     padding: "10px",
+    minHeight: "315px",
 });
 
 export const StyledGrade = styled(Grade)({

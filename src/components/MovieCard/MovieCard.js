@@ -28,23 +28,20 @@ const MovieCard = ({movie, handleOnClick}) => {
                             {movie.fullTitle}
                         </Typography>
 
-                        {movie.rank === undefined ? (
-                            ""
-                        ) : (
+                        {!!movie.rank && (
                             <Stack direction="row">
                                 <Typography variant="h6">{`Rank: ${movie.rank} `}</Typography>
 
-                                {movie.rankUpDown === undefined ? (
-                                    ""
-                                ) : movie.rankUpDown.includes("-") ? (
-                                    <StyledTypographyDown variant="h6">
-                                        {`(${movie.rankUpDown})`}
-                                    </StyledTypographyDown>
-                                ) : (
-                                    <StyledTypographyUp variant="h6">
-                                        {`(${movie.rankUpDown})`}
-                                    </StyledTypographyUp>
-                                )}
+                                {!!movie.rankUpDown &&
+                                    (movie.rankUpDown.includes("-") ? (
+                                        <StyledTypographyDown variant="h6">
+                                            {`(${movie.rankUpDown})`}
+                                        </StyledTypographyDown>
+                                    ) : (
+                                        <StyledTypographyUp variant="h6">
+                                            {`(${movie.rankUpDown})`}
+                                        </StyledTypographyUp>
+                                    ))}
                             </Stack>
                         )}
 

@@ -17,91 +17,78 @@ import Loading from "../Loading/Loading";
 const Actor = ({actor, handleOnClick, loading}) => {
     const allIds = useAppSelector(moviesSelectors.selectIds);
 
+    if (loading) {
+        return <Loading />;
+    }
+
     return (
-        <>
-            {!loading ? (
-                <StyledPaper>
-                    <StyledStack>
-                        <Box>
-                            <StyledTypographyName>
-                                {actor.name}
-                            </StyledTypographyName>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="roles"
-                                    defaultMessage="Roles: "
-                                />
-                                {actor.role}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="dob"
-                                    defaultMessage=" Date of Birth:"
-                                />
-                                {actor.birthDate}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                {actor.deathDate !== null ? (
-                                    <>
-                                        <FormattedMessage
-                                            id="dod"
-                                            defaultMessage="Date of Death: "
-                                        />
-                                        {actor.deathDate}
-                                    </>
-                                ) : (
-                                    ""
-                                )}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="awards"
-                                    defaultMessage="Awards: "
-                                />
-                                {actor.awards}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="summary"
-                                    defaultMessage="Summary: "
-                                />
-                                {actor.summary}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="height"
-                                    defaultMessage="Height: "
-                                />
-                                {actor.height}
-                            </StyledTypographyBody>
-                            <StyledTypographyBody>
-                                <FormattedMessage
-                                    id="knownFor"
-                                    defaultMessage="Known For: "
-                                />
+        <StyledPaper>
+            <StyledStack>
+                <Box>
+                    <StyledTypographyName>{actor.name}</StyledTypographyName>
+                    <StyledTypographyBody>
+                        <FormattedMessage id="roles" defaultMessage="Roles: " />
+                        {actor.role}
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
+                        <FormattedMessage
+                            id="dob"
+                            defaultMessage=" Date of Birth:"
+                        />
+                        {actor.birthDate}
+                    </StyledTypographyBody>
+                    {!!actor.deathDate && (
+                        <StyledTypographyBody>
+                            <FormattedMessage
+                                id="dod"
+                                defaultMessage="Date of Death: "
+                            />
+                            {actor.deathDate}
+                        </StyledTypographyBody>
+                    )}
+                    <StyledTypographyBody>
+                        <FormattedMessage
+                            id="awards"
+                            defaultMessage="Awards: "
+                        />
+                        {actor.awards}
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
+                        <FormattedMessage
+                            id="summary"
+                            defaultMessage="Summary: "
+                        />
+                        {actor.summary}
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
+                        <FormattedMessage
+                            id="height"
+                            defaultMessage="Height: "
+                        />
+                        {actor.height}
+                    </StyledTypographyBody>
+                    <StyledTypographyBody>
+                        <FormattedMessage
+                            id="knownFor"
+                            defaultMessage="Known For: "
+                        />
 
-                                {actor.knownFor.map(({id, title}, index) => (
-                                    <StyledLink
-                                        to={`/movie/${id}`}
-                                        key={id}
-                                        onClick={() =>
-                                            handleOnClick(id, allIds)
-                                        }>
-                                        {index !== actor.knownFor.length - 1
-                                            ? `${title}, `
-                                            : title}
-                                    </StyledLink>
-                                ))}
-                            </StyledTypographyBody>
-                        </Box>
+                        {actor.knownFor.map(({id, title}, index) => (
+                            <StyledLink
+                                to={`/movie/${id}`}
+                                key={id}
+                                onClick={() => handleOnClick(id, allIds)}>
+                                {index !== actor.knownFor.length - 1
+                                    ? `${title}, `
+                                    : title}
+                            </StyledLink>
+                        ))}
+                    </StyledTypographyBody>
+                </Box>
 
-                        <StyledImg src={actor.image} alt={actor.name} />
-                    </StyledStack>
-                </StyledPaper>
-            ) : (
-                <Loading />
-            )}
-        </>
+                <StyledImg src={actor.image} alt={actor.name} />
+            </StyledStack>
+        </StyledPaper>
     );
 };
 

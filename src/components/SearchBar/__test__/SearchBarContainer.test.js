@@ -4,6 +4,7 @@ import {screen} from "@testing-library/react";
 import SearchBarContainer from "../SearchBarContainer";
 import userEvent from "@testing-library/user-event";
 import {renderWithBaseWrapper} from "../../../tests/helper";
+import {searchActors, searchMovies} from "../../../tests/data/testData";
 
 describe("SearchBarContainer", () => {
     it("Search textfiled should change when typing", async () => {
@@ -49,6 +50,13 @@ describe("SearchBarContainer", () => {
     });
 
     it("Search for a Title", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(searchActors),
+            })
+        );
+
         renderWithBaseWrapper(<SearchBarContainer />);
         const searchElement = screen.getByRole("textbox");
         const title = "Ryan";
@@ -59,6 +67,13 @@ describe("SearchBarContainer", () => {
     });
 
     it("Search for a Celeb", async () => {
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(searchMovies),
+            })
+        );
+
         renderWithBaseWrapper(<SearchBarContainer />);
         const searchElement = screen.getByRole("textbox");
         const celeb = "Jack";

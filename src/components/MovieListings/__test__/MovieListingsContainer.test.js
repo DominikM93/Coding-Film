@@ -2,19 +2,22 @@ import React from "react";
 import "@testing-library/jest-dom";
 import {screen} from "@testing-library/react";
 import MovieListingsContainer from "../MovieListingsContainer";
-import {renderWithBaseWrapperStore} from "../../../tests/helper";
-import userEvent from "@testing-library/user-event";
+import {
+    renderWithBaseWrapper,
+    renderWithBaseWrapperStore,
+} from "../../../tests/helper";
+import {movieListingsTest} from "../../../tests/data/testData";
 
 describe("MovieListingsContainer", () => {
     it("Render MovieListingsContainer", async () => {
-        renderWithBaseWrapperStore(
-            <MovieListingsContainer />,
-            global.testStore
+        fetch.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200,
+                json: () => Promise.resolve(movieListingsTest),
+            })
         );
-        const imageElement = screen.getByRole("img", {
-            name: /Thor/i,
-        });
-        await userEvent.click(imageElement);
+
+        renderWithBaseWrapper(<MovieListingsContainer />);
     });
 
     it("Render MovieListingsContainer", async () => {

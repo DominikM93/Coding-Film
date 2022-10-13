@@ -14,8 +14,10 @@ const MovieListingsContainer = () => {
     const movies = useAppSelector(getDenormlizeMovies);
 
     useEffect(() => {
-        if (ids.length === 0) {
-            dispatch(fetchInTheaters());
+        switch (ids.length) {
+            case 0:
+                dispatch(fetchInTheaters());
+                break;
         }
     }, []);
 

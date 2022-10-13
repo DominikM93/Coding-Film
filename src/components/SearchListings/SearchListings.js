@@ -1,48 +1,25 @@
 import React from "react";
 import SearchCard from "../SearchCard/SearchCard";
 import {Grid} from "@mui/material";
-import {useParams} from "react-router-dom";
 import Loading from "../Loading/Loading";
-import {useAppSelector} from "../../utils/hooks";
-import {
-    getActorsData,
-    getDenormlizeActors,
-} from "../../features/selectors/actorsSelectors";
-import {
-    getDenormlizeMovies,
-    getMoviesData,
-} from "../../features/selectors/moviesSelectors";
+import PropTypes from "prop-types";
 
-const SearchListings = () => {
-    const {type} = useParams();
+const SearchListings = ({listData, type, loading}) => {
+    return loading ? (
+        <Loading />
+    ) : (
+        <Grid container justifyContent="space-evenly">
+            {listData.map((data) => (
+                <SearchCard key={data.id} data={data} type={type} />
+            ))}
+        </Grid>
+    );
+};
 
-    const actorsData = useAppSelector(getActorsData);
-    const actors = useAppSelector(getDenormlizeActors);
-
-    const moviesData = useAppSelector(getMoviesData);
-    const movies = useAppSelector(getDenormlizeMovies);
-
-    if (type === "actor") {
-        return actorsData.loading ? (
-            <Loading />
-        ) : (
-            <Grid container justifyContent="space-evenly">
-                {actors.map((data) => (
-                    <SearchCard key={data.id} data={data} type={type} />
-                ))}
-            </Grid>
-        );
-    } else if (type === "movie") {
-        return moviesData.loading ? (
-            <Loading />
-        ) : (
-            <Grid container justifyContent="space-evenly">
-                {movies.map((data) => (
-                    <SearchCard key={data.id} data={data} type={type} />
-                ))}
-            </Grid>
-        );
-    }
+SearchListings.propTypes = {
+    listData: PropTypes.array,
+    type: PropTypes.string,
+    loading: PropTypes.bool,
 };
 
 export default SearchListings;

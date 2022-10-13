@@ -24,6 +24,7 @@ export const fetchMovieById = createAsyncThunk(
         ).then((res) => res.json());
 
         const newMovieInfo = {...data, loading: false};
+
         if (allIds.includes(id)) {
             dispatch(updateMovie({id, changes: newMovieInfo}));
         } else {
@@ -36,31 +37,37 @@ export const fetchByType = createAsyncThunk(
     "movies/fetchByType",
     async (type, {dispatch}) => {
         let fullType = "none";
+        let data;
 
-        if (type === 2) {
-            const data = await fetch(
-                `https://imdb-api.com/en/API/Top250Movies/${process.env.REACT_APP_APIKey}`
-            ).then((res) => res.json());
-            dispatch(setMovies(data.items));
-            fullType = "topMovies";
-        } else if (type === 3) {
-            const data = await fetch(
-                `https://imdb-api.com/en/API/Top250TVs/${process.env.REACT_APP_APIKey}`
-            ).then((res) => res.json());
-            dispatch(setMovies(data.items));
-            fullType = "topShows";
-        } else if (type === 4) {
-            const data = await fetch(
-                `https://imdb-api.com/en/API/MostPopularMovies/${process.env.REACT_APP_APIKey}`
-            ).then((res) => res.json());
-            dispatch(setMovies(data.items));
-            fullType = "popularMovies";
-        } else if (type === 5) {
-            const data = await fetch(
-                `https://imdb-api.com/en/API/MostPopularTVs/${process.env.REACT_APP_APIKey}`
-            ).then((res) => res.json());
-            dispatch(setMovies(data.items));
-            fullType = "popularShows";
+        switch (type) {
+            case 2:
+                data = await fetch(
+                    `https://imdb-api.com/en/API/Top250Movies/${process.env.REACT_APP_APIKey}`
+                ).then((res) => res.json());
+                dispatch(setMovies(data.items));
+                fullType = "topMovies";
+                break;
+            case 3:
+                data = await fetch(
+                    `https://imdb-api.com/en/API/Top250TVs/${process.env.REACT_APP_APIKey}`
+                ).then((res) => res.json());
+                dispatch(setMovies(data.items));
+                fullType = "topShows";
+                break;
+            case 4:
+                data = await fetch(
+                    `https://imdb-api.com/en/API/MostPopularMovies/${process.env.REACT_APP_APIKey}`
+                ).then((res) => res.json());
+                dispatch(setMovies(data.items));
+                fullType = "popularMovies";
+                break;
+            case 5:
+                data = await fetch(
+                    `https://imdb-api.com/en/API/MostPopularTVs/${process.env.REACT_APP_APIKey}`
+                ).then((res) => res.json());
+                dispatch(setMovies(data.items));
+                fullType = "popularShows";
+                break;
         }
 
         return fullType;

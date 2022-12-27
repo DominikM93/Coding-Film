@@ -20,7 +20,7 @@ import Error from "../Error/Error";
 const Movie = ({movie, loading = true, error}) => {
     if (loading) return <Loading />;
 
-    if (error !== null) return <Error error={error} />;
+    if (error !== null && error !== "") return <Error error={error} />;
 
     switch (!loading) {
         case true:
